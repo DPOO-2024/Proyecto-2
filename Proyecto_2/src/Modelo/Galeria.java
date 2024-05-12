@@ -250,10 +250,7 @@ public class Galeria {
 					}
 				}
 				
-				if (c==null) {
-					
-					throw new MensajedeErrorException("Ningun comprador compro esta pieza");
-				}
+
 								
 					}
 			}		
