@@ -37,7 +37,21 @@ public class ConsolaSubasta {
 					String oferta = ConsolaInicial.scanner.nextLine().trim();
 					System.out.println("Por favor, ingrese su forma de pago si gana la subasta" );
 					String formaPago = ConsolaInicial.scanner.nextLine();
-					c.hacerOferta(this.gal.getAdmin(),oferta,formaPago,this.subasta.getOperador(), pieza);
+					String numTarjeta="no";
+			    	String codSeguridad ="no";
+			    	String pasarela ="no";
+			    	String nombre ="no";
+					if (formaPago.equalsIgnoreCase("Tarjeta")) {
+					    System.out.print("Por favor, ingrese el numero de su tarjeta:");
+					    numTarjeta = ConsolaInicial.scanner.nextLine().trim();
+					    System.out.print("Por favor, ingrese el codigo de seguridad ");
+					    codSeguridad = ConsolaInicial.scanner.nextLine().trim();
+					    System.out.print("Por favor, ingrese su pasarela de pago (Paypal, PayU , ApplePay), escribalo tal cual aparece ");
+					    pasarela = ConsolaInicial.scanner.nextLine().trim();
+					    System.out.print("Por favor, el nombre del titular, si es usted ingrese no ");
+					    nombre = ConsolaInicial.scanner.nextLine().trim();
+					    }
+					c.hacerOferta(this.gal.getAdmin(),oferta,formaPago,this.subasta.getOperador(), pieza,numTarjeta, codSeguridad, pasarela, nombre);
 					
 				}
 				else {

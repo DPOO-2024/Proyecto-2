@@ -11,12 +11,12 @@ public class Oferta {
 	
 	private Comprador comprador;
 	
-	private String formaPago;
+	private Pago pago;
 	
-	public Oferta(int valorOferta, Comprador comprador, String formaPago) {
+	public Oferta(int valorOferta, Comprador comprador, Pago pago) {
 		this.comprador=comprador;
 		this.valorOferta=valorOferta;
-		this.setFormaPago(formaPago);
+		this.pago = pago;
 		
 	}
 
@@ -36,9 +36,9 @@ public class Oferta {
 		this.comprador = comprador;
 	}
 	
-	public static Oferta generarOferta(int valorOferta, Comprador comprador, String formaPago) throws MensajedeErrorException {
-		if(formaPago.equalsIgnoreCase("Tarjeta") | formaPago.equalsIgnoreCase("Efectivo") | formaPago.equalsIgnoreCase("Transferencia")) {
-		Oferta oferta = new Oferta(valorOferta,comprador, formaPago);
+	public static Oferta generarOferta(int valorOferta, Comprador comprador,Pago pago) throws MensajedeErrorException {
+		if(pago.getFormaPago().equalsIgnoreCase("Tarjeta") | pago.getFormaPago().equalsIgnoreCase("Efectivo") | pago.getFormaPago().equalsIgnoreCase("Transferencia")) {
+		Oferta oferta = new Oferta(valorOferta,comprador, pago);
 		return oferta;}
 		else {
 			throw new MensajedeErrorException("No es una forma de pago valida");
@@ -46,12 +46,12 @@ public class Oferta {
 		
 	}
 
-	public String getFormaPago() {
-		return formaPago;
+	public Pago getPago() {
+		return pago;
 	}
 
-	public void setFormaPago(String formaPago) {
-		this.formaPago = formaPago;
+	public void setPago(Pago pago) {
+		this.pago = pago;
 	}
 	
 	

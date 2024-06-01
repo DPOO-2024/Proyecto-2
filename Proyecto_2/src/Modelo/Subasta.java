@@ -76,16 +76,16 @@ public class Subasta {
 				List<Oferta> ofertas = entry.getValue();
 				int  max = this.operador.mayorOferta(pieza);
 				Comprador comprador = null;
-				String formaPago = null;
+				Pago pago = null;
 				for (Oferta oferta:ofertas) {
 					if (oferta.getValorOferta()==max) {
 						comprador=oferta.getComprador();
-						formaPago =oferta.getFormaPago();
+						pago =oferta.getPago();
 
 					}
 				}
-				if (!comprador.equals(null) && !formaPago.equals(null)) {
-					if (cajero.generarPagoCajero(max, pieza,formaPago,comprador)){
+				if (!comprador.equals(null) && pago !=null) {
+					if (cajero.generarPagoCajero(max, pieza,pago,comprador)){
 						comprador.agregarCompra(max);
 						comprador.agregarPiezaCompra(pieza.getTitulo(), max);
 						gal.getInventario().moverPieza(pieza);

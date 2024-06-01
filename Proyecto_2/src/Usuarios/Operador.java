@@ -10,6 +10,7 @@ import Exceptions.MensajedeErrorException;
 import Modelo.Administrador;
 import Modelo.Empleado;
 import Modelo.Oferta;
+import Modelo.Pago;
 import Piezas.Pieza;
 
 
@@ -73,8 +74,8 @@ public class Operador extends Empleado{
 	
 
 	
-	public void crearOferta(int valoferta, Comprador comprador ,Pieza pieza, String formaPago, Administrador admin) throws MensajedeErrorException {
-		Oferta oferta = Oferta.generarOferta(valoferta, comprador, formaPago);
+	public void crearOferta(int valoferta, Comprador comprador ,Pieza pieza, Administrador admin, Pago pago) throws MensajedeErrorException {
+		Oferta oferta = Oferta.generarOferta(valoferta, comprador, pago);
 		this.verificarOferta(oferta,pieza,admin);
 		
 	

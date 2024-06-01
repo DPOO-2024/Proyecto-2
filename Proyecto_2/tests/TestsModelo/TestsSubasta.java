@@ -15,11 +15,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import Exceptions.MensajedeErrorException;
+import Modelo.Administrador;
 import Modelo.Galeria;
 import Modelo.Pago;
 import Modelo.Subasta;
 import Piezas.Pieza;
 import Usuarios.Comprador;
+import Usuarios.Operador;
 
 class TestsSubasta {
 private Galeria galeria;
@@ -113,7 +115,7 @@ private Galeria galeria;
 			Pieza pieza = subasta.getInventario().get(1);
 			assertNotEquals(0,pieza.getValorInicial(),"No deberia estar en el inventario de una subasta");
 			
-			comp.hacerOferta(galeria.getAdmin(),"60" ,formaPago , subasta.getOperador(), pieza);
+			comp.hacerOferta(galeria.getAdmin(),"60" ,formaPago , subasta.getOperador(), pieza,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 			if (formaPago.equals("otro")) {
 				fail("Deberia fallar esta forma de pago");
 			}
@@ -139,7 +141,7 @@ private Galeria galeria;
 		galeria.participarSubasta(240508, galeria.getAdmin().getComprador("maria_gomez"), 1);
 		Subasta sub = galeria.participarSubasta(240508, galeria.getAdmin().getComprador("maria_gomez"), 0);
 		Pieza p = sub.getInventario().get(1);
-		galeria.getAdmin().getComprador("maria_gomez").hacerOferta(galeria.getAdmin(),"60" ,"tarjeta" , sub.getOperador(), p);
+		galeria.getAdmin().getComprador("maria_gomez").hacerOferta(galeria.getAdmin(),"60" ,"tarjeta" , sub.getOperador(), p,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 		
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -151,14 +153,14 @@ private Galeria galeria;
 			galeria.participarSubasta(240508, galeria.getAdmin().getComprador("david_brown"), 1);
 			Subasta subasta = galeria.participarSubasta(240508, galeria.getAdmin().getComprador("david_brown"), 0);
 			Pieza pieza = subasta.getInventario().get(1);
-			galeria.getAdmin().getComprador("david_brown").hacerOferta(galeria.getAdmin(),"55" ,"tarjeta" , subasta.getOperador(), pieza);
+			galeria.getAdmin().getComprador("david_brown").hacerOferta(galeria.getAdmin(),"55" ,"tarjeta" , subasta.getOperador(), pieza,"fsfddsf","Sfddsfd","sdfsd","sdfds");
         });
 		
 		assertThrows(MensajedeErrorException.class, () -> {
 			galeria.participarSubasta(240508, galeria.getAdmin().getComprador("robert_johnson"), 1);
 			Subasta subasta = galeria.participarSubasta(240508, galeria.getAdmin().getComprador("robert_johnson"), 0);
 			Pieza pieza = subasta.getInventario().get(1);
-			galeria.getAdmin().getComprador("robert_johnson").hacerOferta(galeria.getAdmin(),"45" ,"tarjeta" , subasta.getOperador(), pieza);
+			galeria.getAdmin().getComprador("robert_johnson").hacerOferta(galeria.getAdmin(),"45" ,"tarjeta" , subasta.getOperador(), pieza,"fsfddsf","Sfddsfd","sdfsd","sdfds");
         });
 	}
 	
@@ -173,8 +175,7 @@ private Galeria galeria;
 			galeria.participarSubasta(240508, galeria.getAdmin().getComprador("maria_gomez"), 1);
 			Subasta sub = galeria.participarSubasta(240508, galeria.getAdmin().getComprador("maria_gomez"), 0);
 			Pieza p = sub.getInventario().get(1);
-			galeria.getAdmin().getComprador("maria_gomez").hacerOferta(galeria.getAdmin(),"60" ,"tarjeta" , sub.getOperador(), p);
-			
+			galeria.getAdmin().getComprador("maria_gomez").hacerOferta(galeria.getAdmin(),"60" ,"tarjeta" , sub.getOperador(), p,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 			
 			
 			
@@ -183,7 +184,7 @@ private Galeria galeria;
 			galeria.participarSubasta(240508, galeria.getAdmin().getComprador("robert_johnson"), 1);
 			Subasta subasta = galeria.participarSubasta(240508, galeria.getAdmin().getComprador("robert_johnson"), 0);
 			Pieza pieza = subasta.getInventario().get(1);
-			galeria.getAdmin().getComprador("robert_johnson").hacerOferta(galeria.getAdmin(),"80" ,"tarjeta" , subasta.getOperador(), pieza);
+			galeria.getAdmin().getComprador("robert_johnson").hacerOferta(galeria.getAdmin(),"80" ,"tarjeta" , subasta.getOperador(), pieza,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 			galeria.terminarSubasta(240508);
 			assertFalse(subasta.isActiva(),"La subasta deberia estar inactiva");
 			assertEquals(pieza.getTitulo(),galeria.getAdmin().getComprador("robert_johnson").getHistorialCompras().get(0),"La ganadora deberia tener la pieza entre sus compras");
@@ -201,7 +202,7 @@ private Galeria galeria;
 		try {
 			Comprador comprador = galeria.getAdmin().getComprador("robert_johnson");
 			Pieza pieza = galeria.getInventario().getPiezasDisponibles().get(5);
-			comprador.comprarPieza(6, formaPago, galeria);
+			comprador.comprarPieza(6, formaPago, galeria,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 			assertNotEquals(0,pieza.getValorFijo(),"No deberia poder venderse de esta forma");
 			Pago pago = galeria.getCajero().getPagos().get(0);
 			assertEquals(pieza.getValorFijo(),pago.getMonto(),"El valor de cobro es incorrecto");
@@ -228,7 +229,7 @@ private Galeria galeria;
 	assertThrows(MensajedeErrorException.class, () -> {
 		Comprador comprador = galeria.getAdmin().getComprador("robert_johnson");
 		galeria.getInventario().getPiezasDisponibles().get(5);
-		comprador.comprarPieza(1, "tarjeta", galeria);
+		comprador.comprarPieza(1, "tarjeta", galeria,"fsfddsf","Sfddsfd","sdfsd","sdfds");
     });
 	
 	}

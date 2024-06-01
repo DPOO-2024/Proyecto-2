@@ -7,9 +7,9 @@ import java.util.List;
 
 import Exceptions.MensajedeErrorException;
 import Exceptions.PagoRechazado;
-import Exceptions.PiezaRepetidaException;
 import Modelo.Administrador;
 import Modelo.Galeria;
+import Modelo.Pago;
 import Piezas.Pieza;
 
 public class Comprador extends Usuario{
@@ -40,7 +40,7 @@ public class Comprador extends Usuario{
 	
 	
 	
-    public void comprarPieza(int idx,String formapago, Galeria gal)throws MensajedeErrorException, PagoRechazado, PiezaRepetidaException {
+    public void comprarPieza(int idx,String formapago, Galeria gal,String numTarjeta,String codSeguridad, String pasarela, String nombre)throws Exception {
 		ArrayList<Pieza> piezasDisponibles= gal.getInventario().getPiezasDisponibles();
 		Pieza pieza =piezasDisponibles.get(idx-1);
 
@@ -56,7 +56,9 @@ public class Comprador extends Usuario{
     		if (!pieza.equals(null)) {
     			boolean confirmado = gal.getAdmin().confirmarVenta(pieza,this);
 	            if ( confirmado){
-	            	if (gal.getCajero().generarPagoCajero(pieza.getValorFijo(),pieza,formapago,this)) {
+	            	Pago pago =null;
+	    			pago = Pago.generarPago(pieza.getValorFijo(), pieza, formapago, this, numTarjeta,codSeguridad, pasarela, nombre);
+	            	if (gal.getCajero().generarPagoCajero(pieza.getValorFijo(),pieza,pago,this)) {
 	            		gal.getInventario().moverPieza(pieza);
 	            		this.agregarCompra(pieza.getValorFijo());
 	            		this.agregarPiezaCompra(pieza.getTitulo(),pieza.getValorFijo());
@@ -88,7 +90,13 @@ public class Comprador extends Usuario{
     	}
     	catch(MensajedeErrorException e) {
     		throw e;
-    	} catch (PagoRechazado e) {
+    	}catch (ClassNotFoundException e) {
+			throw e;
+		} 
+    	catch (PagoRechazado e) {
+			throw e;
+		}
+    	catch (Exception e) {
 			throw e;
 		}
     	
@@ -120,14 +128,15 @@ public class Comprador extends Usuario{
 	}
 	
 	
-	public void hacerOferta(Administrador admin, String oferta, String formaPago, Operador operador, Pieza pieza) throws MensajedeErrorException {
+	public void hacerOferta(Administrador admin, String oferta, String formaPago, Operador operador, Pieza pieza, String numTarjeta, String codSeguridad, String pasarela, String nombre2) throws MensajedeErrorException {
 		int valor=Integer.parseInt(oferta);
 		int valorI = pieza.getValorInicial();
 		List<Integer> valores = operador.listaValoresOferta(pieza);
 		if (!(valores.contains(valor)) && valor>operador.mayorOferta(pieza) && valor>=valorI) {
 			
-		
-			operador.crearOferta(valor, this, pieza, formaPago, admin);
+			Pago pago =null;
+			pago = Pago.generarPago(valorI, pieza, formaPago, this, numTarjeta,codSeguridad, pasarela, nombre2);
+			operador.crearOferta(valor, this, pieza, admin,pago);
 	}
 		else {
 			throw new MensajedeErrorException("Aumenta tu oferta");
