@@ -50,7 +50,14 @@ public class Galeria {
 	
 	//AumentarCupo
 
-
+	public boolean inicioSesionAdmin(String login,String password) throws MensajedeErrorException {
+		if (login.equals(this.admin.getLogin()) && password.equals(this.admin.getPassword())) {
+			return true;
+		}
+		else {
+			throw new MensajedeErrorException("Los datos ingresados para iniciar sesion como administrador fueron erroneos");
+		}
+	}
 
 	public void aumentarCupo(String loginComprador,int valor) {
 		this.admin.aumentarCupoComprador(loginComprador,valor);			
