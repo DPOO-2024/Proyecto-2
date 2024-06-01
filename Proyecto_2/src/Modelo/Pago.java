@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Piezas.Pieza;
 import Usuarios.Comprador;
 
@@ -15,16 +18,29 @@ public class Pago {
 	
 	private String formaPago;
 	
-	public Pago(int monto, Pieza pieza, String formaPago, Comprador comprador) {
+	private List<String> infoTarjeta;
+	
+	public Pago(int monto, Pieza pieza, String formaPago, Comprador comprador, String numTarjeta, String codSeguridad, String pasarela, String nombre) {
         this.monto = monto;
         this.pieza = pieza;
         this.comprador = comprador;
         this.formaPago = formaPago;
+        this.infoTarjeta = new ArrayList<>();
+        if (!numTarjeta.equals("no") && !codSeguridad.equals("no") && !pasarela.equals("no")) {
+        infoTarjeta.add(numTarjeta);
+        infoTarjeta.add(codSeguridad);
+        infoTarjeta.add(pasarela);
+        }
+        infoTarjeta.add(nombre);
 	}
 	
 	
 	public int getMonto() {
 		return monto;
+	}
+	
+	public List<String> getinfoTarjeta() {
+		return infoTarjeta;
 	}
 
 
@@ -63,9 +79,9 @@ public class Pago {
 	}
 
 
-	public static Pago generarPago(int monto, Pieza pieza,String formaPago ,Comprador comprador) {
+	public static Pago generarPago(int monto, Pieza pieza,String formaPago ,Comprador comprador,String numTarjeta, String codSeguridad, String pasarela, String nombre2) {
 		
-		Pago pago = new Pago(monto, pieza, formaPago, comprador);
+		Pago pago = new Pago(monto, pieza, formaPago, comprador, numTarjeta, codSeguridad, pasarela, nombre2);
 		return pago;
 		
 	}

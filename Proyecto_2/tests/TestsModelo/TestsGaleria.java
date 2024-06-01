@@ -99,7 +99,7 @@ class TestsGaleria {
 		try {
 			Comprador comprador = galeria.getAdmin().getComprador("maria_gomez");
 			Pieza pieza = galeria.getInventario().getPiezasDisponibles().get(3);
-			comprador.comprarPieza(4, "tarjeta", galeria);
+			comprador.comprarPieza(4, "tarjeta", galeria,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 			List<String> info = galeria.historialPiezas(pieza.getTitulo());
 			assertEquals(" Flores en Primavera",info.get(0), "No es el titulo correcto");
 			assertEquals("vendida",info.get(1), "Deberia estar vendida");

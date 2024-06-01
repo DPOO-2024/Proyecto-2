@@ -125,7 +125,7 @@ public class Galeria {
 					subasta = s;
 				}
 			}
-			if (!subasta.equals(null)) {
+			if (subasta !=null) {
 				this.admin.terminarSubastaAdmin(subasta,this.cajero,this);
 				this.subastasActivas.remove(subasta);
 			}
@@ -257,10 +257,7 @@ public class Galeria {
 					}
 				}
 				
-				if (c==null) {
-					
-					throw new MensajedeErrorException("Ningun comprador compro esta pieza");
-				}
+
 								
 					}
 			}		
@@ -309,10 +306,10 @@ public class Galeria {
 	public List<List<String>> historialArtista(String nombreA) throws MensajedeErrorException {
 		boolean encontrado = false;
 		List<List<String>> piezasTotales = new ArrayList<>();
-		List<String> infoArtista = new ArrayList<>();
 		for(Pieza pieza :this.inventario.getPiezasDisponibles()) {
 			for (Autor autor:pieza.getAutores()) {
 				if (autor.getNombre().equals(nombreA)) {
+					List<String> infoArtista = new ArrayList<>();
 					encontrado = true;
 					infoArtista.add(autor.getNombre());
 					infoArtista.add(pieza.getTitulo());//1

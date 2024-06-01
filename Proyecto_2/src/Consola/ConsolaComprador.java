@@ -124,6 +124,10 @@ public class ConsolaComprador implements ConsolaBase{
 	}	
 	public void comprarPieza() {
 		try {
+			String numTarjeta="no";
+	    	String codSeguridad ="no";
+	    	String pasarela ="no";
+	    	String nombre ="no";
 			System.out.println("Las piezas disponibles son:");
 			this.gal.mostrarPiezasDisponibles();
 			System.out.println("\nIngrese el numero de la pieza : ");
@@ -131,8 +135,17 @@ public class ConsolaComprador implements ConsolaBase{
 			int idx=Integer.parseInt(pi);
 			System.out.print("Por favor, ingrese la forma de pago ");
 		    String formapago = ConsolaInicial.scanner.nextLine().trim();
-		    
-		    this.comprador.comprarPieza(idx,formapago,this.gal);
+		    if (formapago.equalsIgnoreCase("Tarjeta")) {
+		    System.out.print("Por favor, ingrese el numero de su tarjeta:");
+		    numTarjeta = ConsolaInicial.scanner.nextLine().trim();
+		    System.out.print("Por favor, ingrese el codigo de seguridad ");
+		    codSeguridad = ConsolaInicial.scanner.nextLine().trim();
+		    System.out.print("Por favor, ingrese su pasarela de pago (Paypal, PayU , ApplePay), escribalo tal cual aparece ");
+		    pasarela = ConsolaInicial.scanner.nextLine().trim();
+		    System.out.print("Por favor, el nombre del titular, si es usted ingrese no ");
+		    nombre = ConsolaInicial.scanner.nextLine().trim();
+		    }
+		    this.comprador.comprarPieza(idx,formapago,this.gal,numTarjeta, codSeguridad, pasarela, nombre);
 		    System.out.print("\nLa compra de la pieza fue exitosa ");
 		}catch (Exception e) {
 			System.out.println(e); 
@@ -223,7 +236,21 @@ public class ConsolaComprador implements ConsolaBase{
 						String oferta = ConsolaInicial.scanner.nextLine().trim();
 						System.out.println("Por favor, ingrese su forma de pago si gana la subasta" );
 						String formaPago = ConsolaInicial.scanner.nextLine();
-						this.comprador.hacerOferta(this.gal.getAdmin(),oferta,formaPago,subasta.getOperador(),p);}
+						String numTarjeta="no";
+				    	String codSeguridad ="no";
+				    	String pasarela ="no";
+				    	String nombre ="no";
+						if (formaPago.equalsIgnoreCase("Tarjeta")) {
+						    System.out.print("Por favor, ingrese el numero de su tarjeta:");
+						    numTarjeta = ConsolaInicial.scanner.nextLine().trim();
+						    System.out.print("Por favor, ingrese el codigo de seguridad ");
+						    codSeguridad = ConsolaInicial.scanner.nextLine().trim();
+						    System.out.print("Por favor, ingrese su pasarela de pago (Paypal, PayU , ApplePay), escribalo tal cual aparece ");
+						    pasarela = ConsolaInicial.scanner.nextLine().trim();
+						    System.out.print("Por favor, el nombre del titular, si es usted ingrese no ");
+						    nombre = ConsolaInicial.scanner.nextLine().trim();
+						    }
+						this.comprador.hacerOferta(this.gal.getAdmin(),oferta,formaPago,subasta.getOperador(),p,numTarjeta,codSeguridad,pasarela, nombre);}
 						else {
 							throw new MensajedeErrorException("No puedes realizar otra oferta si no estas registrado");
 						}
