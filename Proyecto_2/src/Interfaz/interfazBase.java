@@ -63,8 +63,9 @@ public class interfazBase extends JFrame{
 		interfazBase base = new interfazBase(galeriaNueva);
 	}
 
+
 	public void interfazEmpleado(Empleado resp) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

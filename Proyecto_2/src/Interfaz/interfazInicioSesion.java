@@ -30,6 +30,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 	private JDialog ventanaI;
 	private String[] datos;
 	private ventanaInicioSesion infoVentana;
+	private InterfazRegistro infoextra;
 	private String interfaz;
 	
 	private static final String A="admin";
@@ -168,7 +169,28 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 	}
 	
 	public void registrarUsuario() {
-		// TODO Auto-generated method stub
+	
+		infoextra = new InterfazRegistro();
+		ventanaI = new JDialog(); 
+		ventanaI.setTitle("Ingresar Datos");
+		ventanaI.setSize(500, 550);
+		ventanaI.setLocationRelativeTo(null);
+		ventanaI.setLayout(new BorderLayout());
+		
+		ventanaI.add(infoextra,BorderLayout.CENTER);
+		
+		JButton continuar = new JButton("Ingresar");
+		continuar.setForeground(Color.WHITE);
+		continuar.setPreferredSize(new Dimension(100,30));
+		continuar.setBackground(new Color(0, 90, 26));
+		continuar.setActionCommand("aprovado");
+		continuar.addActionListener(this);
+		
+		ventanaI.add(continuar,BorderLayout.SOUTH);
+		
+		
+		
+		ventanaI.setVisible(true);
 		
 	}
 	
@@ -203,6 +225,9 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 					ventanaI.dispose();
 				}
 			}			
+		}
+		else if (comando.equals("Continuar")) {
+			
 		}
 	}
 	
