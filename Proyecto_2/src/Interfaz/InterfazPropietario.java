@@ -119,7 +119,15 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 	}
 	
 	public void agregarPieza(ArrayList<String> datos, String tipo) {
+		try {
+			mundo.agregarPieza(datos, tipo, propietario);
+			JOptionPane.showMessageDialog(this,"Se agrego la pieza correctamente","Pieza",JOptionPane.INFORMATION_MESSAGE);
 
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(this,"No se pudo agregar la Pieza","Error",JOptionPane.ERROR_MESSAGE);
+
+		}
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -142,7 +150,7 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
 				ventana.setVisible(true);
 			} catch (MensajedeErrorException e1) {
-				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 			}
 		}else if (comando.equals("No Disponibles")) {
 			ArrayList<Pieza> piezas = propietario.getHistorialPiezas();
@@ -151,7 +159,7 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
 				ventana.setVisible(true);
 			} catch (MensajedeErrorException e1) {
-				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}

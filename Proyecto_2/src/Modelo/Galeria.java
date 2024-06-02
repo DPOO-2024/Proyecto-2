@@ -398,7 +398,7 @@ public class Galeria {
 	
   
 
-	public void agregarPieza(ArrayList<String> info, String tipo,Propietario pro) {
+	public void agregarPieza(ArrayList<String> info, String tipo,Propietario pro) throws MensajedeErrorException {
 		Pieza pieza=null;
 		
 		int fechaMax=Integer.parseInt(info.get(4));
@@ -424,7 +424,28 @@ public class Galeria {
 			pieza=new Escultura("Escultura",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
 					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), Integer.parseInt(info.get(8)), 
 					Integer.parseInt(info.get(9)), Integer.parseInt(info.get(10)),materiales,Integer.parseInt(info.get(12)), electricidad,info.get(14));
+		}else if (tipo.equals("Fotografia")) {
+			pieza=new Fotografia("Fotografia",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
+					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), info.get(8), 
+					Integer.parseInt(info.get(9)), Integer.parseInt(info.get(10)),info.get(11),info.get(12)) ;
+		}else if (tipo.equals("Impresion")) {
+			pieza=new Impresion("Impresion",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
+					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), info.get(8), 
+					info.get(9), Integer.parseInt(info.get(10)),info.get(11),info.get(12),info.get(13)) ;
+		}else if (tipo.equals("Pintura")) {
+			pieza=new Pintura("Pintura",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
+					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), info.get(8), 
+					info.get(9), info.get(10),Integer.parseInt(info.get(11)),Integer.parseInt(info.get(12)),info.get(13),info.get(14)) ;
+		}else if (tipo.equals("Video")) {
+			pieza=new Video("Video",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
+					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), Integer.parseInt(info.get(8)), 
+					info.get(9), info.get(10),info.get(11),Integer.parseInt(info.get(12)),info.get(13)) ;
+		}else if (tipo.equals("Otro")) {
+			pieza=new Otro("Otro",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
+					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), info.get(8)) ;
 		}
+		
+		admin.agregarPieza(pieza, pro);
 	}
    
     

@@ -25,6 +25,11 @@ import javax.swing.text.StyledDocument;
 
 import Exceptions.MensajedeErrorException;
 import InterfazPanelesPiezas.PanelEscultura;
+import InterfazPanelesPiezas.PanelFotografia;
+import InterfazPanelesPiezas.PanelImpresion;
+import InterfazPanelesPiezas.PanelOtro;
+import InterfazPanelesPiezas.PanelPintura;
+import InterfazPanelesPiezas.PanelVideo;
 
 public class VentanaNuevaPieza extends JDialog implements ActionListener{
 	private JPanel ventana;
@@ -35,6 +40,11 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 	private String t;
 	private InterfazPropietario interfaz;
 	private PanelEscultura infoEscultura;
+	private PanelFotografia infoFotografia;
+	private PanelImpresion infoImpresion;
+	private PanelPintura infoPintura;
+	private PanelVideo infoVideo;
+	private PanelOtro infoOtro;
 	
 	//Para guardar la informacion guardada
 	private JTextField titulo;
@@ -115,7 +125,20 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 			infoEscultura= new PanelEscultura();
 			union.add(infoEscultura.getPanel());
 		}else if(tipo.equals("Fotografia")) {
-			//union.add(panelFotografia());
+			infoFotografia= new PanelFotografia();
+			union.add(infoFotografia.getPanel());
+		}else if(tipo.equals("Impresion")) {
+			infoImpresion= new PanelImpresion();
+			union.add(infoImpresion.getPanel());
+		}else if(tipo.equals("Pintura")) {
+			infoPintura= new PanelPintura();
+			union.add(infoPintura.getPanel());
+		}else if(tipo.equals("Video")) {
+			infoVideo= new PanelVideo();
+			union.add(infoVideo.getPanel());
+		}else if(tipo.equals("Otro")) {
+			infoOtro= new PanelOtro();
+			union.add(infoOtro.getPanel());
 		}
 		
 		
@@ -124,8 +147,6 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		ventana.add(union);
 		ventana.repaint();
 		
-		panel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        panel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		panel.repaint();
 		
 		afuera.repaint();
@@ -161,6 +182,16 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		
 		if (t.equals("Escultura")) {
 			i = infoEscultura.getInfo();
+		}else if (t.equals("Fotografia")) {
+			i = infoFotografia.getInfo();
+		}else if (t.equals("Impresion")) {
+			i = infoImpresion.getInfo();
+		}else if (t.equals("Pintura")) {
+			i = infoPintura.getInfo();
+		}else if (t.equals("Pintura")) {
+			i = infoVideo.getInfo();
+		}else if (t.equals("Otro")) {
+			i = infoOtro.getInfo();
 		}
 		
 		resp.addAll(i);
@@ -234,7 +265,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		lugar.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		general.add(lugar);
 		
-		JLabel m4 = new JLabel("Ingrese los autores (separados por comas):",JLabel.CENTER);;
+		JLabel m4 = new JLabel("Ingrese los autores (separados por comas/Anonimo):",JLabel.CENTER);;
 		m4.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m4.setForeground(new Color(0, 90, 26));
 		general.add(m4);
@@ -304,10 +335,10 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
         general.add(m8);
 		
-        mostrar = new JTextField("");
-        mostrar.setSize(100, 20);
-        mostrar.setFont(new Font("Nirmala UI",Font.PLAIN,18));
-		general.add(mostrar);
+        valorfijo = new JTextField("");
+        valorfijo.setSize(100, 20);
+        valorfijo.setFont(new Font("Nirmala UI",Font.PLAIN,18));
+		general.add(valorfijo);
 		
 		return general;
 		
