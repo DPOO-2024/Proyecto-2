@@ -15,7 +15,7 @@ import Usuarios.Comprador;
 
 public class PayU extends PasarelaPago{
 	
-	private String archivoTransacciones = "PayU.json";
+	private String archivoTransacciones = "PayU.txt";
 	public final static String PAYU= "PayU";
 
 	@Override
@@ -26,10 +26,10 @@ public class PayU extends PasarelaPago{
 				String info="";
 				try (FileWriter writer = new FileWriter(archivof)) {
 					if(pago.getinfoTarjeta().get(3).equals("no")) {
-					 info = pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+comprador.getNombre()+", exitosa";}
+					 info = pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+comprador.getNombre()+","+pago.getFecha()+", exitosa";}
 					
 					else {
-						 info =pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+pago.getinfoTarjeta().get(2)+", exitosa";
+						 info =pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(3)+","+pago.getFecha()+", exitosa";
 					}
 					writer.write(info);
 					writer.close();

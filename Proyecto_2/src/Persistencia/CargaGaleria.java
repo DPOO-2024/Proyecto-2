@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 import Exceptions.MensajedeErrorException;
 import Modelo.Galeria;
@@ -16,19 +17,23 @@ import Usuarios.Propietario;
 import Usuarios.Usuario;
 import Modelo.Administrador;
 import Modelo.Empleado;
+import Modelo.Pago;
 
 public class CargaGaleria {
 	
 	private String archivoGaleria;
 	private String archivoUsuarios;
 	private String archivoPiezas;
+	private String archivoPagos;
 	private Galeria galeria;
 	
 	
-	public CargaGaleria(String archivoGaleria, String archivoUsuarios, String archivoPiezas, Galeria galeria) {
+	
+	public CargaGaleria(String archivoGaleria, String archivoUsuarios, String archivoPiezas, Galeria galeria,String archivoPagos) {
 		this.archivoGaleria = archivoGaleria;
 		this.archivoUsuarios = archivoUsuarios;
 		this.archivoPiezas = archivoPiezas;
+		this.archivoPagos = archivoPagos;
 		this.galeria=galeria;
 	}
 	
@@ -138,6 +143,35 @@ public class CargaGaleria {
         }
 		
 	}
+	public List<Pago> cargarPagos() throws Exception {
+		String ubicacion = encontrarRuta() + "\\Datos\\"+ this.archivoGaleria;
+		File archivof = new File(ubicacion);
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(archivof))) {
+            String linea;
+            List<Pago> pagos = new ArrayList<Pago>();
+            while ((linea = br.readLine()) != null) {
+            	String[] l = linea.split(",");
+            	int monto = Integer.valueOf(l[0].trim());
+            	Pieza pieza = this.galeria.getInventario().getHistorialPiezas().get(0);
+            	String formaPago = l[1].trim();
+            	Comprador comprador = this.galeria.getAdmin().getComprador("maria_gomez");
+            	String num = l[2].trim();
+            	String cod = l[3].trim();
+            	String pas  = l[4].trim();
+            	String nom = l[5].trim();
+            	String fecha = l[6].trim();
+            	Pago pago = new Pago(monto,pieza,formaPago,comprador,num,cod,pas,nom,fecha);
+            	pagos.add(pago);
+            }
+            return pagos;
+		} catch (FileNotFoundException e) {
+        	throw new MensajedeErrorException("No se encontro el archivo: " + this.archivoGaleria);
+        } catch(Exception e) {
+        	throw e;
+        }
+		
+	}
 	
 	//Inicializa la galeria, asignando empleados y el administrador
 	public void cargarBasico() throws Exception {	
@@ -173,6 +207,8 @@ public class CargaGaleria {
                 		c = new Cajero(l[1].trim(), l[2].trim(), "Cajero");
                 		this.galeria.setCajero(c);
                 		this.galeria.getEmpleados().add(c);
+                		List<Pago> pagos = cargarPagos();
+                		c.setPagos(pagos);
                 	}else {
                 		throw new MensajedeErrorException("Ese rol de empleado no existe");
                 	}

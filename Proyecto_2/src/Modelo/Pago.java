@@ -1,6 +1,8 @@
 package Modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Piezas.Pieza;
@@ -20,21 +22,25 @@ public class Pago {
 	
 	private List<String> infoTarjeta;
 	
-	public Pago(int monto, Pieza pieza, String formaPago, Comprador comprador, String numTarjeta, String codSeguridad, String pasarela, String nombre) {
+	private String fecha;
+	
+	public Pago(int monto, Pieza pieza, String formaPago, Comprador comprador, String numTarjeta, String codSeguridad, String pasarela, String nombre, String fecha) {
         this.monto = monto;
         this.pieza = pieza;
         this.comprador = comprador;
         this.formaPago = formaPago;
         this.infoTarjeta = new ArrayList<>();
-        if (!numTarjeta.equals("no") && !codSeguridad.equals("no") && !pasarela.equals("no")) {
         infoTarjeta.add(numTarjeta);
         infoTarjeta.add(codSeguridad);
         infoTarjeta.add(pasarela);
-        }
         infoTarjeta.add(nombre);
+        this.fecha = fecha;
+        
 	}
 	
-	
+	public String getFecha() {
+		return fecha;
+	}
 	public int getMonto() {
 		return monto;
 	}
@@ -80,8 +86,10 @@ public class Pago {
 
 
 	public static Pago generarPago(int monto, Pieza pieza,String formaPago ,Comprador comprador,String numTarjeta, String codSeguridad, String pasarela, String nombre2) {
-		
-		Pago pago = new Pago(monto, pieza, formaPago, comprador, numTarjeta, codSeguridad, pasarela, nombre2);
+		Date fechaActual = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("yyMMdd");
+        String fecha = formato.format(fechaActual);
+		Pago pago = new Pago(monto, pieza, formaPago, comprador, numTarjeta, codSeguridad, pasarela, nombre2,fecha);
 		return pago;
 		
 	}

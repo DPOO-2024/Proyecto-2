@@ -21,9 +21,9 @@ public class ApplePay extends PasarelaPago {
 
 	    try (FileWriter writer = new FileWriter(archivoLog, true)) { 
 	        if (pago.getinfoTarjeta().get(3).equals("no")) {
-	            info = pago.getinfoTarjeta().get(0) + "," + pago.getinfoTarjeta().get(1) + "," + pago.getinfoTarjeta().get(2) + "," + comprador.getNombre() + ", exitosa";
+	            info = pago.getinfoTarjeta().get(0) + "," + pago.getinfoTarjeta().get(1) + "," + pago.getinfoTarjeta().get(3) +","+pago.getFecha()+ ", exitosa";
 	        } else {
-	            info = pago.getinfoTarjeta().get(0) + "," + pago.getinfoTarjeta().get(1) + "," + pago.getinfoTarjeta().get(2) + "," + comprador.getNombre() + ", exitosa";
+	            info = pago.getinfoTarjeta().get(0) + "," + pago.getinfoTarjeta().get(1)+ "," + comprador.getNombre() +","+pago.getFecha()+ ", exitosa";
 	        }
 	        writer.write(info + System.lineSeparator()); 
 	    } catch (IOException e) {

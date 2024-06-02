@@ -23,10 +23,10 @@ public class Paypal extends PasarelaPago {
 				String info="";
 				try (FileWriter writer = new FileWriter(archivof)) {
 					if(pago.getinfoTarjeta().get(3).equals("no")) {
-					 info = pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+comprador.getNombre()+", exitosa";}
+					 info = pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+comprador.getNombre()+","+pago.getFecha()+", exitosa";}
 					
 					else {
-						 info =pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+pago.getinfoTarjeta().get(2)+", exitosa";
+						 info =pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(3)+","+pago.getFecha()+", exitosa";
 					}
 					writer.write(info);
 					writer.close();
