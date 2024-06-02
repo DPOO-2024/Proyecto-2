@@ -24,6 +24,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import Exceptions.MensajedeErrorException;
 import Modelo.Galeria;
 import Piezas.Pieza;
 
@@ -35,7 +36,7 @@ public class VentanaPiezas extends JDialog implements ActionListener {
 	private Galeria mundo;
 	
 	//public VentanaPiezas(interfazAdministrador i, ArrayList<Pieza> p, String titulo) {
-	public VentanaPiezas( ArrayList<Pieza> p, String titulo, String ext, Galeria m) {
+	public VentanaPiezas( ArrayList<Pieza> p, String titulo, String ext, Galeria m) throws MensajedeErrorException {
 		//interfaz=i;
 		mundo=m;
 		t=titulo;
@@ -82,7 +83,7 @@ public class VentanaPiezas extends JDialog implements ActionListener {
 	}
 	
 	//Crear panel con Piezas
-	public JPanel panelPiezas() {
+	public JPanel panelPiezas() throws MensajedeErrorException {
 		
 		JPanel panel = new JPanel(new BorderLayout());
 		JLabel t = new JLabel("Tipo de Pieza -> Titulo de la Pieza",JLabel.CENTER);
@@ -92,10 +93,15 @@ public class VentanaPiezas extends JDialog implements ActionListener {
 
 		DefaultListModel<String> titulos = new DefaultListModel<String>();
 		int i=1;
-		for (Pieza p:piezas) {
-			String fila = Integer.toString(i)+ ". "+p.getTipoPieza()+" -> "+p.getTitulo();
-			titulos.addElement(fila);
-			i++;
+		if (piezas.isEmpty()) {
+			throw new MensajedeErrorException("No hay piezas disponibles");
+		}
+		else {
+			for (Pieza p:piezas) {
+				String fila = Integer.toString(i)+ ". "+p.getTipoPieza()+" -> "+p.getTitulo();
+				titulos.addElement(fila);
+				i++;
+			}
 		}
 		
 		lista = new JList<String>(titulos);
@@ -125,7 +131,8 @@ public class VentanaPiezas extends JDialog implements ActionListener {
 		Pieza p = piezas.get(i);
 		String infoPieza="";
 		
-		if (t.equals("Piezas Disponibles")||t.equals("Historial Piezas (No disponibles)")) {
+		if (t.equals("Piezas Disponibles")||t.equals("Historial Piezas (No disponibles)")
+				||t.equals("Piezas Propias Disponibles")||t.equals("Piezas Propias No Disponibles")) {
 			infoPieza=Pieza.imprimirPieza(p);
 		}else if (t.equals("Historial de una Pieza")) {
 			infoPieza=Pieza.mostrarHistorialPieza(mundo,p);

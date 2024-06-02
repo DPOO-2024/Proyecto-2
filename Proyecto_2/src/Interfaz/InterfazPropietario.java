@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Exceptions.MensajedeErrorException;
 import Modelo.Galeria;
 import Piezas.Pieza;
 import Usuarios.Propietario;
@@ -130,15 +131,26 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 			}
 			
 		}else if (comando.equals("Agregar")) {
-			agregarPieza();
+			VentanaNuevaPieza ventana = new VentanaNuevaPieza(this);
+			ventana.setVisible(true);
 		}else if (comando.equals("Disponibles")) {
 			ArrayList<Pieza> piezas = propietario.getEstadoPiezas();
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
-			ventana.setVisible(true);
+			VentanaPiezas ventana;
+			try {
+				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+				ventana.setVisible(true);
+			} catch (MensajedeErrorException e1) {
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+			}
 		}else if (comando.equals("No Disponibles")) {
 			ArrayList<Pieza> piezas = propietario.getHistorialPiezas();
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Propias No Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
-			ventana.setVisible(true);
+			VentanaPiezas ventana;
+			try {
+				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+				ventana.setVisible(true);
+			} catch (MensajedeErrorException e1) {
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 

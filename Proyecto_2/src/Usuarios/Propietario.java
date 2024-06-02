@@ -29,7 +29,6 @@ public class Propietario extends Usuario{
 	}
 	
 	public void ingresarPieza(Pieza pieza) {
-		
 		estadoPiezas.add(pieza);
 	}
 	public void venderPieza(Pieza pieza) { 

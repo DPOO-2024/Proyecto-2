@@ -77,7 +77,12 @@ public class InterfazBase extends JFrame{
 	}
 
 	public void interfazPropietario(Propietario resp) {
-		// TODO Auto-generated method stub
+		InterfazPropietario i = new InterfazPropietario(this,mundo,resp);
+		info.removeAll();
+		info.revalidate();
+		info.add(i);
+		info.repaint();
+		repaint();
 		
 	}
 	

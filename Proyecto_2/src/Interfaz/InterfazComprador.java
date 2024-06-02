@@ -289,8 +289,13 @@ public class InterfazComprador extends JPanel implements ActionListener {
 			ventanaComprar();			
 		}else if (comando.equals("Piezas Disponibles")) {
 			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
-			ventana.setVisible(true);
+			VentanaPiezas ventana;
+			try {
+				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+				ventana.setVisible(true);
+			} catch (MensajedeErrorException e1) {
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+			}
 			
 		}
 		else if (comando.equals("aumentar")) {
@@ -302,13 +307,23 @@ public class InterfazComprador extends JPanel implements ActionListener {
 			
 		}else if (comando.equals("Piezas Disponibles")) {
 			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
-			ventana.setVisible(true);		
+			VentanaPiezas ventana;
+			try {
+				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+				ventana.setVisible(true);
+			} catch (MensajedeErrorException e1) {
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+			}		
 		}else if (comando.equals("Historial Pieza")) {
 			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
 			piezas.addAll(mundo.mostrarHistorialPiezas());
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Historial de una Pieza","Elija la pieza de la cual quiera ver su historia",mundo);
-			ventana.setVisible(true);
+			VentanaPiezas ventana;
+			try {
+				ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+				ventana.setVisible(true);
+			} catch (MensajedeErrorException e1) {
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+			}
 		}else if (comando.equals("Historial Artista")) {
 			ArrayList<Autor> autores = mundo.getInventario().getAutores();
 			VentanaAutores ventana = new VentanaAutores(autores,mundo);
@@ -331,15 +346,12 @@ public class InterfazComprador extends JPanel implements ActionListener {
 			registrarseSubasta();
 		}else if (comando.equals("Participar subasta")) {
 			JOptionPane.showMessageDialog(null, "Recuerda que para poder participar en una subasta debes estar registrado en ella","Participar subasta" , JOptionPane.INFORMATION_MESSAGE);
-			VentanaParticiparSubasta ventana = new VentanaParticiparSubasta(this,mundo);
-			ventana.setVisible(true);
+			JOptionPane.showMessageDialog(null, "Hola","Participar subasta" , JOptionPane.INFORMATION_MESSAGE);
+
+			//VentanaParticiparSubasta ventana = new VentanaParticiparSubasta(this,mundo);
+			//ventana.setVisible(true);
 		}
-		
-		
-		
-		
-		
-		
+
 	}
 
 

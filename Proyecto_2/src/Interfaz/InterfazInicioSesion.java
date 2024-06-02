@@ -160,7 +160,7 @@ public class InterfazInicioSesion extends JPanel implements ActionListener{
 			}else if (interfaz.equals(C)) {
 				Comprador resp = mundo.getAdmin().verificarComprador(datos[0], datos[1]);
 	    		base.interfazComprador(resp);
-			}else if (interfaz.equals(R)) {
+			}else if (interfaz.equals(P)) {
 				Propietario resp = mundo.getAdmin().verificarPropietario(datos[0], datos[1]);
 	    		base.interfazPropietario(resp);
 			}			

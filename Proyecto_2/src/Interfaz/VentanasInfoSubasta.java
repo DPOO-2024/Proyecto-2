@@ -69,7 +69,6 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 		relleno.setForeground(new Color(0, 144, 41 ));
 		p.add(relleno);
 		
-		
 		JPanel mensaje = new JPanel(new GridLayout(1,2,20,50));
 		JTextArea m1 = new JTextArea("Ingrese la fecha (AAMMDD) en la que desea realizar la \nsubasta :");
 		m1.setLineWrap(true);
