@@ -43,7 +43,11 @@ public class ConsolaAdministrador implements ConsolaBase{
 
 	            switch (opcion) {
 	                case 1:
-	                    this.gal.guardarGaleria();
+						try {
+							this.gal.guardarGaleria();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 	                    break;
 	                case 2:
 	                    crearSubasta();
@@ -126,7 +130,7 @@ public class ConsolaAdministrador implements ConsolaBase{
 		catch(Exception e) {
 			System.out.println(e);
 		}
-		
+	
 	}
 	
 	public void terminarSubasta() {

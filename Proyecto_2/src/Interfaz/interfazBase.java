@@ -1,11 +1,9 @@
 package Interfaz;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 import Modelo.Empleado;
 import Modelo.Galeria;
@@ -13,6 +11,7 @@ import Usuarios.Comprador;
 import Usuarios.Propietario;
 
 public class interfazBase extends JFrame{
+	private static final long serialVersionUID = 1L;
 	private Galeria mundo;
 	private JPanel info;
 	
@@ -31,16 +30,30 @@ public class interfazBase extends JFrame{
 
 		
 		info=new JPanel();
-		interfazInicioSesion i = new interfazInicioSesion(this,mundo);
-		info.add(i);
 		add(info,BorderLayout.CENTER);	
+		interfazIS();
 		
 		
 		setResizable(false);
 		setVisible(true);
 	}
 	
+	public void interfazIS() {
+		interfazInicioSesion i = new interfazInicioSesion(this,mundo);
+		info.removeAll();
+		info.revalidate();
+		info.add(i);
+		info.repaint();
+		repaint();
+	}
+	
 	public void interfazAdmin() {
+		interfazAdministrador i = new interfazAdministrador(this,mundo);
+		info.removeAll();
+		info.revalidate();
+		info.add(i);
+		info.repaint();
+		repaint();
 	}
 	
 	

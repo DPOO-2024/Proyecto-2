@@ -484,11 +484,11 @@ public class Galeria {
 		}
 	}
 		
-	public void guardarGaleria() { 
+	public void guardarGaleria() throws Exception { 
 		try {
 			CentralPersistencia.guardarGaleria(this);
 		} catch (Exception e) {
-			System.out.println("Hubo un error guardando la Galeria");
+			throw new Exception ();
 	}
 	
 }

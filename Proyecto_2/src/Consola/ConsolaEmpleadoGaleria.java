@@ -34,7 +34,12 @@ public class ConsolaEmpleadoGaleria implements ConsolaBase {
 
 	            switch (opcion) {
 	                case 1:
-	                    this.gal.guardarGaleria();
+					try {
+						this.gal.guardarGaleria();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	                    break;
 	                case 2:
 	                    verificarTipodeEmpleado();

@@ -6,10 +6,17 @@ package Exceptions;
 @SuppressWarnings("serial")
 public class MensajedeErrorException extends Exception
 {
+	private String m;
 
     public MensajedeErrorException( String mensaje )
     {
         super( mensaje );
+        m=mensaje;
     }
+    
+    public String getMensaje(){
+    	return this.m;
+    }
+    
 
 }

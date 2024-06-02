@@ -23,11 +23,8 @@ import Usuarios.Propietario;
 
 
 public class interfazInicioSesion extends JPanel implements ActionListener{
-	private JButton admin;
-	private JButton empleado;
-	private JButton comprador;
-	private JButton propietario;
-	private JButton registrar;
+	private static final long serialVersionUID = 1L;
+	private int intentos;
 	private Galeria mundo;
 	private interfazBase base;
 	private JDialog ventanaI;
@@ -67,7 +64,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 		JPanel b= new JPanel();
 		b.setLayout(new GridLayout(5, 1, 20, 20));
 		
-		admin=new JButton("Administrador");
+		JButton admin=new JButton("Administrador");
 		
 		admin.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
 		admin.setForeground(Color.WHITE);
@@ -77,7 +74,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 		admin.addActionListener(this);
 		b.add(admin);
 		
-		empleado=new JButton("Empleado");
+		JButton empleado=new JButton("Empleado");
 		empleado.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
 		empleado.setForeground(Color.WHITE);
 		empleado.setPreferredSize(new Dimension(200,30));
@@ -86,7 +83,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 		empleado.addActionListener(this);
 		b.add(empleado);
 		
-		comprador=new JButton("Comprador");
+		JButton comprador=new JButton("Comprador");
 		comprador.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
 		comprador.setForeground(Color.WHITE);
 		comprador.setPreferredSize(new Dimension(200,30));
@@ -95,7 +92,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 		comprador.addActionListener(this);
 		b.add(comprador);
 		
-		propietario=new JButton("Propietario");
+		JButton propietario=new JButton("Propietario");
 		propietario.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
 		propietario.setForeground(Color.WHITE);
 		propietario.setPreferredSize(new Dimension(200,30));
@@ -104,7 +101,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 		propietario.addActionListener(this);
 		b.add(propietario);
 		
-		registrar=new JButton("Registrar");
+		JButton registrar=new JButton("Registrar");
 		registrar.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
 		registrar.setForeground(Color.WHITE);
 		registrar.setPreferredSize(new Dimension(200,30));
@@ -118,6 +115,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 	
 	//Genera la ventana para el inicio de sesion
 	public void ventanaInicio() {
+		intentos=0;
 		infoVentana = new ventanaInicioSesion();
 		
 		ventanaI = new JDialog(); 
@@ -197,18 +195,16 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 			try {
 				datos = infoVentana.recogerInfo();
 				ventanaI.dispose();
-				redireccionInterfaz();		
+				redireccionInterfaz();	
 			}catch(Exception err) {
-				ventanaI.dispose();
-				ventanaInicio();
-			}
+				intentos+=1;
+				if (intentos>3) {
+					JOptionPane.showMessageDialog(null, "Ha realizado muchos intentos","Error",JOptionPane.ERROR_MESSAGE);
+					ventanaI.dispose();
+				}
+			}			
 		}
 	}
-
-
-	
-	
-	
 	
 
 }
