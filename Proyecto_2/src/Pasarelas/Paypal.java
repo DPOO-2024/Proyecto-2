@@ -13,26 +13,37 @@ import Usuarios.Comprador;
 public class Paypal extends PasarelaPago {
 	
 	private String archivoTransacciones = "Paypal.txt";
+	public final static String PAYPAL= "Paypal";
 
 	@Override
 	public boolean procesarPago(Comprador comprador, Pago pago) throws Exception {
 		//Quitar comas de descripciones
 				String ubicacion = encontrarRuta() + "\\Datos\\"+ this.archivoTransacciones;
 				File archivof = new File(ubicacion);
-				
+				String info="";
 				try (FileWriter writer = new FileWriter(archivof)) {
-					String info = pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+pago.getinfoTarjeta().get(3);
+					if(pago.getinfoTarjeta().get(3).equals("no")) {
+					 info = pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+comprador.getNombre()+", exitosa";}
+					
+					else {
+						 info =pago.getinfoTarjeta().get(0)+","+pago.getinfoTarjeta().get(1) +","+ pago.getinfoTarjeta().get(2)+","+pago.getinfoTarjeta().get(2)+", exitosa";
+					}
 					writer.write(info);
 					writer.close();
 		        } catch (IOException e) {
-		            e.printStackTrace();
+		           throw e;
 		        }
-		return false;
+		return true;
 	}
 
 	public String encontrarRuta() {
 		String ruta = System.getProperty("user.dir");
 		return ruta;
 	}
+
+	public static String getPaypal() {
+		return PAYPAL;
+	}
+	
 
 }

@@ -1,6 +1,10 @@
 package Usuarios;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,21 +32,11 @@ public class Cajero extends Empleado{
 	// como se cuando se registra un pago correctamente ???
 	public boolean generarPagoCajero(int precio,Pieza pieza,Pago pago, Comprador comprador) throws Exception {
 		boolean respuesta =false;
-		if( pago.getFormaPago().equalsIgnoreCase("Efectivo") | pago.getFormaPago().equalsIgnoreCase("Transferencia")) {
+		if( pago.getFormaPago().equalsIgnoreCase("Tarjeta") | pago.getFormaPago().equalsIgnoreCase("Efectivo") | pago.getFormaPago().equalsIgnoreCase("Transferencia")) {
 			registrarPago(pago);
 			respuesta =true;
 		}
-		else if (pago.getFormaPago().equalsIgnoreCase("Tarjeta")){
-			try {
-				respuesta = pagoConTarjeta(comprador, pago);
-			} catch (ClassNotFoundException e) {
-				throw e;
-			}
-		}
-		else {
-		return respuesta;
-		}
-		
+	
 
 		return respuesta;
 	}
@@ -54,13 +48,14 @@ public class Cajero extends Empleado{
 		pagos.add(pago);
 	}
 
-	public boolean pagoConTarjeta(Comprador comprador,Pago pago) throws Exception {
-		try {
+	public boolean pagoConTarjeta(Comprador comprador, Pago pago) throws Exception {
+		String ubicacion = encontrarRuta() + "\\Datos\\"+ "pasarelas.txt";
+		try  {
+			List<PasarelaPago> pasarelas = lectorPasarelas(ubicacion);
 			String nombrePasarela = pago.getinfoTarjeta().get(2);
 			Class<?> clase = Class.forName(nombrePasarela);
 			
-			miPasarela = (PasarelaPago) clase.getDeclaredConstructor(null).newInstance(null);
-			
+			PasarelaPago pasarela = (PasarelaPago) clase.getDeclaredConstructor().newInstance(); 
 			boolean verificado =miPasarela.procesarPago(comprador,pago);
 			
 			return verificado;
@@ -74,6 +69,28 @@ public class Cajero extends Empleado{
 		
 		}
 
+	public List<PasarelaPago> lectorPasarelas(String archivo) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+		List<PasarelaPago> pasarelas = new ArrayList<>();
+		BufferedReader br = new BufferedReader(new FileReader(archivo));
+		String linea;
+		while ((linea = br.readLine()) != null) { 
+			Class<?> clase = Class.forName(linea);
+			
+			PasarelaPago pasarela = (PasarelaPago) clase.getDeclaredConstructor().newInstance(); 
+			pasarelas.add(pasarela);
+		}
+		br.close();
+		return pasarelas;
+	}
+	
+	
+	
+	public String encontrarRuta() {
+		String ruta = System.getProperty("user.dir");
+		return ruta;
+	}
+	
+	
 	public List<Pago> getPagos() {
 		return pagos;
 	}

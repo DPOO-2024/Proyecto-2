@@ -33,7 +33,6 @@ public class GuardarGaleria {
 			generarArchivoGaleria();
 			generarArchivoUsuarios();
 			generarArchivoPiezas();
-			
 			System.out.println("\nLos archivos se guardaron en la siguiente ubicación: "+ encontrarRuta()+"\\Datos");
 			return "\nSe guardo con exito la galeria, en los siguientes documentos: " + this.archivoGaleria + "," + this.archivoUsuarios + 
 					"," + this.archivoPiezas ;
