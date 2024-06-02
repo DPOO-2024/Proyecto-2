@@ -465,9 +465,10 @@ public class Galeria {
         String archivoInicio = "InicioGaleria.txt";
         String archivoUsuarios = "Usuarios.txt";
         String archivoPiezas = "Piezas.txt";
+        String archivoPagos = "Pagos.txt";
         
 		try {
-			CentralPersistencia.cargarGaleria(archivoInicio, archivoUsuarios, archivoPiezas,galeria);	
+			CentralPersistencia.cargarGaleria(archivoInicio, archivoUsuarios, archivoPiezas, galeria, archivoPagos);	
 		} catch (Exception e) {
 			System.out.println("Ocurrio un error iniciando la aplicacion");
 			System.out.println("Los archivos cargados para iniciar la aplicacion no son correctos");
