@@ -214,17 +214,15 @@ public class Galeria {
     }
 	
   //Funciones de imprimir informacion piezas, Artistas o Usuarios 
-	public List<String> historialPiezas(String nombreP) throws MensajedeErrorException {
+	public List<String> historialPiezas(Pieza pieza) throws MensajedeErrorException {
 		
 		
 		
 		List<String> infoPieza = new ArrayList<>();
-		
-		Pieza pieza = this.inventario.getPieza(nombreP);
 	
 		
 		if (pieza!=null) {
-		infoPieza.add(nombreP);
+		infoPieza.add(pieza.getTitulo());
 			
 			if (pieza.isVendido()) {
 				infoPieza.add("vendida");
@@ -236,7 +234,7 @@ public class Galeria {
 					int i =0;
 					while(i<comprador.getHistorialCompras().size()) {
 					String titulo = comprador.getHistorialCompras().get(i).replaceAll("\\s", "");
-					String nombre = nombreP.replaceAll("\\s", "");
+					String nombre = pieza.getTitulo().replaceAll("\\s", "");
 					if(titulo.equalsIgnoreCase(nombre)) {
 						infoPieza.add(comprador.getLogin());
 						infoPieza.add(comprador.getHistorialCompras().get(i+1));

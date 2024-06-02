@@ -16,6 +16,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Exceptions.MensajedeErrorException;
 import Modelo.Galeria;
 
 public class InterfazRegistro extends JPanel {
@@ -33,7 +34,7 @@ public class InterfazRegistro extends JPanel {
 	public InterfazRegistro() {
 		setLayout(new BorderLayout());
 		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(7,1));
+		p.setLayout(new GridLayout(7,1,10,30));
 		
 		JPanel rol = new JPanel(new GridLayout(1,2));
 		rol.setPreferredSize(new Dimension(100, 5));
@@ -101,7 +102,7 @@ public class InterfazRegistro extends JPanel {
 		p.add(info2);
 		JPanel info3 = new JPanel(new GridLayout(1,2));
 		
-		JLabel m4 = new JLabel("telefono:",JLabel.CENTER);
+		JLabel m4 = new JLabel("Telefono:",JLabel.CENTER);
 		m4.setFont(new Font("Nirmala UI",Font.BOLD,25));
 		m4.setForeground(new Color(0, 144, 41));
 		info3.add(m4);
@@ -129,23 +130,18 @@ public class InterfazRegistro extends JPanel {
 	}
 
 	
-	public ArrayList<String> recogerRegistro() throws Exception{
+	public ArrayList<String> recogerRegistro() throws MensajedeErrorException{
 		if (usuario.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Ingrese un usuario","Error",JOptionPane.ERROR_MESSAGE);
-			throw new Exception();
+			throw new MensajedeErrorException("Ingrese un usuario");
 		}else if (password.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Ingrese una contraseña","Error",JOptionPane.ERROR_MESSAGE);
-			throw new Exception();
+			throw new MensajedeErrorException("Ingrese una contraseña");
 		}
 		else if (correo.getText().equals("")){
-			JOptionPane.showMessageDialog(null, "Ingrese un correo","Error",JOptionPane.ERROR_MESSAGE);
-			throw new Exception();
+			throw new MensajedeErrorException("Ingrese un correo");
 		}else if (nombre.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Ingrese su nombre","Error",JOptionPane.ERROR_MESSAGE);
-			throw new Exception();
+			throw new MensajedeErrorException("Ingrese su nombre");
 		}else if (telefono.getText().equals("")) {
-			JOptionPane.showMessageDialog(null, "Ingrese un telefono","Error",JOptionPane.ERROR_MESSAGE);
-			throw new Exception();
+			throw new MensajedeErrorException("Ingrese un telefono");
 		}
 		ArrayList<String> resp =new ArrayList<>();
 		resp.add(password.getText());

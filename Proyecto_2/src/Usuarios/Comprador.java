@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import Consola.ConsolaInicial;
 import Exceptions.MensajedeErrorException;
 import Exceptions.PagoRechazado;
 import Modelo.Administrador;
@@ -143,6 +144,47 @@ public class Comprador extends Usuario{
 		}
 		
 		
+	}
+	
+	public static String mostrarHistorialCliente(Comprador c,Galeria gal) {
+		try {
+    		List<List<String>> compras = gal.getAdmin().historialComprador(c.getLogin());
+    		String info="";
+    		info=("\nHISTORIAL DEL COMPRADOR: ");
+    		info+="\n"+("Piezas que ha comprado: ");
+    		int i =0;
+    		boolean terminar = false;
+    		if(compras.get(0).size()==1) {
+    			info+="\n"+("Por el momento no ha realizado ninguna compra");
+    		}
+    		while(i<compras.get(0).size()) {
+    			if(i==compras.get(0).size()-1) {
+    				if(compras.size()==1 &&compras.get(0).size()==1) {
+    					info+="\n"+("El valor de su coleccion es 0");
+    				}
+    				else {
+    				info+="\n"+("El valor de su coleccion es "+compras.get(0).get(i));
+    				}
+    				terminar=true;
+    			}
+    			if (!terminar) {
+    		info+="\n"+("- " + compras.get(0).get(i));
+			info+="\n"+("Fue comprada en "+compras.get(0).get(i+1));
+			info+="\n"+("Por un valor de "+compras.get(0).get(i+2));}
+			i=i+3;
+    		 }
+			if(compras.size()!=1) {
+				info+="\n"+("Las piezas de las que es dueño son : ");
+				for(String pieza:compras.get(1)) {
+					info+="\n- "+(pieza);
+				}
+			}
+			return info;
+    	}
+    	catch (Exception e) {
+    		System.out.println(e);
+    	}
+		return null;
 	}
 	
 	

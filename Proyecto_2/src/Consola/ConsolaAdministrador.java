@@ -62,10 +62,10 @@ public class ConsolaAdministrador implements ConsolaBase{
 	                	this.gal.mostrarHistorialPiezas();
 	                    break;
 	                case 6:
-	                	ConsolaInfo.mostrarHistorialPieza(this.gal);
+	                	//ConsolaInfo.mostrarHistorialPieza(this.gal);
 	                    break;
 	                case 7:
-	                	ConsolaInfo.mostrarHistorialArtista(this.gal);
+	                	//ConsolaInfo.mostrarHistorialArtista(this.gal);
 	                	break;
 	                case 8:
 	                	mostrarHistorialCliente();
@@ -195,7 +195,7 @@ public class ConsolaAdministrador implements ConsolaBase{
 	
 	
 	
-	public void mostrarHistorialCliente() {
+	public static String mostrarHistorialCliente(Comprador c,Galeria gal) {
 		try {
     		System.out.print("Por favor, ingrese el login del Usuario: ");
     		String loginU = ConsolaInicial.scanner.nextLine().trim();

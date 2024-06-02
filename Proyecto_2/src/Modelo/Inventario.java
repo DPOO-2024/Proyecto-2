@@ -5,17 +5,20 @@ import java.util.List;
 
 import Exceptions.MensajedeErrorException;
 import Exceptions.PiezaRepetidaException;
+import Piezas.Autor;
 import Piezas.Pieza;
 
 public class Inventario {
 	
 	private ArrayList<Pieza> piezasDisponibles;
 	private ArrayList<Pieza> historialPiezas;
+	private ArrayList<Autor> autores;
 	private Pieza piezaReservada;
 	
 	public Inventario() {
 		this.piezasDisponibles= new ArrayList<Pieza>( );
 		this.historialPiezas= new ArrayList<Pieza>( );
+		this.autores= new ArrayList<Autor>();
 		this.piezaReservada=null;
 	}
 	
@@ -41,8 +44,20 @@ public class Inventario {
 			historialPiezas.add(pieza);
 		}
 		
+		agregarAutores(pieza.getAutores());
+		
 		
 		return "Pieza añadida con exito";
+	}
+	
+	public void agregarAutores(List<Autor> autoresP) {
+		if (!autoresP.isEmpty()) {
+			for(Autor a:autoresP) {
+				if (!autores.contains(a)) {
+					autores.add(a);
+				}
+			}
+		}
 	}
 	
 	
@@ -151,6 +166,10 @@ public class Inventario {
 
 	public void setPiezaReservada(Pieza pieza) {
 		this.piezaReservada = pieza;
+	}
+	
+	public ArrayList<Autor> getAutores(){
+		return this.autores;
 	}
 
 }

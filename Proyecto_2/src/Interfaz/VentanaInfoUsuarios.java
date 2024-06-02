@@ -69,7 +69,7 @@ public class VentanaInfoUsuarios extends JDialog implements ActionListener{
 		relleno.setForeground(new Color(0, 144, 41 ));
 		p.add(relleno);
 		
-		JPanel mensaje = new JPanel(new GridLayout(3,2,10,10));
+		JPanel mensaje = new JPanel(new GridLayout(3,2,10,20));
 		
 		JTextArea m1 = new JTextArea("Login del empleado:");
 		m1.setLineWrap(true);

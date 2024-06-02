@@ -237,9 +237,8 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 					ventanaI.dispose();
 					
 					
-				} catch (Exception e1) {
-					JOptionPane.showMessageDialog(null, "El usuario que ingreso ya se encuentra registrado","Error",JOptionPane.ERROR_MESSAGE);
-					ventanaI.dispose();
+				} catch (MensajedeErrorException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 				}
 					
 			

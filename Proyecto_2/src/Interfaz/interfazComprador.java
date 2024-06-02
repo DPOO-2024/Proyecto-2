@@ -289,7 +289,7 @@ public class interfazComprador extends JPanel implements ActionListener {
 			ventanaComprar();			
 		}else if (comando.equals("Piezas Disponibles")) {
 			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles");
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles","Elija la pieza de la cual quiera ver información General");
 			ventana.setVisible(true);
 			
 		}
