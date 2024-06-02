@@ -148,14 +148,14 @@ public class Galeria {
 	
 
 
-	public void mostrarPiezasDisponibles() {
+	public ArrayList<Pieza> mostrarPiezasDisponibles() {
 		ArrayList<Pieza> piezasDisponibles= this.inventario.getPiezasDisponibles();
-	    imprimirPiezas(piezasDisponibles);
+	    return piezasDisponibles;
 	}
 	
-	public void mostrarHistorialPiezas() {
+	public ArrayList<Pieza> mostrarHistorialPiezas() {
 		ArrayList<Pieza> historialPiezas= this.inventario.getHistorialPiezas();
-	    imprimirPiezas(historialPiezas);
+		 return historialPiezas;
     }
 
     
@@ -213,15 +213,7 @@ public class Galeria {
 
     }
 	
-  //Funciones de imprimir informacion piezas, Artistas o Usuarios
-  	public void imprimirPiezas(List<Pieza> piezasSubasta) { 
-  		int i = 1;
-  		for(Pieza pieza:piezasSubasta) {  			
-  			ConsolaInfo.imprimirPieza(pieza, i);
-  			i++;
-  		}
-
-  	} 
+  //Funciones de imprimir informacion piezas, Artistas o Usuarios 
 	public List<String> historialPiezas(String nombreP) throws MensajedeErrorException {
 		
 		

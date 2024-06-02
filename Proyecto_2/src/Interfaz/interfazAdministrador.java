@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,6 +17,7 @@ import javax.swing.JPanel;
 
 import Exceptions.MensajedeErrorException;
 import Modelo.Galeria;
+import Piezas.Pieza;
 
 public class interfazAdministrador extends JPanel implements ActionListener{
 	private Galeria mundo;
@@ -186,9 +188,17 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 			JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 		}catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "No se pudo crear la Subasta","Error",JOptionPane.ERROR_MESSAGE);
+		}	
+	}
+	
+	public void agregarEmpleado(VentanaInfoUsuarios ventana) {
+		String[] datos=ventana.recogerDatos();
+		try {
+			mundo.agregarEmpleado(datos[0], datos[1],datos[2]);
+			JOptionPane.showMessageDialog(null, "La subasta se creo correctamente","Subasta",JOptionPane.INFORMATION_MESSAGE);
+		}catch (MensajedeErrorException err) {
+			JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 		}
-		
-		
 	}
 
 	@Override
@@ -213,11 +223,13 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 			VentanasInfoSubasta ventana = new VentanasInfoSubasta("Crear Subasta","Crear Subasta","Crear",this);
 			ventana.setVisible(true);
 		}else if (comando.equals("Agregar Empleado")) {
-		
+			VentanaInfoUsuarios ventana = new VentanaInfoUsuarios("Añadir Empleado","Agregar Empleado","Añadir",this);
+			ventana.setVisible(true);		
 		}else if (comando.equals("Piezas Disponibles")) {
-
-		}else if (comando.equals("Piezas Disponibles")) {
-
+			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
+			VentanaPiezas ventana = new VentanaPiezas(this,piezas,"Piezas Disponibles");
+			ventana.setVisible(true);
+			
 		}else if (comando.equals("Piezas Historial")) {
 
 		}else if (comando.equals("Historial Pieza")) {

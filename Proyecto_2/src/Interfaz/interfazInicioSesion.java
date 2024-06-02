@@ -131,12 +131,12 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 		continuar.setForeground(Color.WHITE);
 		continuar.setPreferredSize(new Dimension(100,30));
 		continuar.setBackground(new Color(0, 90, 26));
+		continuar.setFont(new Font ("Book Antiqua", Font.BOLD, 15));
 		continuar.setActionCommand("Continuar");
 		continuar.addActionListener(this);
 		
 		ventanaI.add(continuar,BorderLayout.SOUTH);
-		
-		
+
 		
 		ventanaI.setVisible(true);
 	}

@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class VentanasInfoSubasta extends JDialog implements ActionListener{
 	private JPanel ventana;
@@ -28,7 +29,6 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 	private ButtonGroup tipoOperador;
 	private JRadioButton opY;
 	private JRadioButton opN;
-	private boolean espichado=false;
 	private interfazAdministrador interfaz;
 
 	
@@ -59,10 +59,10 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 		setVisible(true);
 	}
 	
-	
+	//Crear panel para crear subastas
 	public JPanel crearSubasta() {
 		JPanel p = new JPanel();
-		p.setLayout(new GridLayout(3,1));
+		p.setLayout(new GridLayout(4,1));
 		
 		JLabel relleno= new JLabel("Crear una Subasta: ",JLabel.CENTER);
 		relleno.setFont(new Font("Nirmala UI",Font.BOLD,30));
@@ -71,18 +71,18 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 		
 		
 		JPanel mensaje = new JPanel(new GridLayout(1,2,20,50));
-		JTextArea m1 = new JTextArea("Ingrese la fecha (AAMMDD) en la que desea realizar la subasta :");
+		JTextArea m1 = new JTextArea("Ingrese la fecha (AAMMDD) en la que desea realizar la \nsubasta :");
 		m1.setLineWrap(true);
+		m1.setEditable(false);
 		m1.setWrapStyleWord(true);
 		m1.setOpaque(false);
-		m1.setAlignmentX(m1.CENTER_ALIGNMENT);
 		m1.setFont(new Font("Nirmala UI",Font.BOLD,20));
 		m1.setForeground(new Color(0, 144, 41));
 		mensaje.add(m1);
 		
 		fecha = new JTextField("");
 		fecha.setSize(100, 20);
-		fecha.setFont(new Font("Nirmala UI",Font.PLAIN,25));
+		fecha.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		mensaje.add(fecha);
 		
 		p.add(mensaje);
@@ -94,7 +94,7 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 		//Boton Operador ya registrado
 		opY= new JRadioButton("Operador ya seleccionado",true);
 		opY.setFont(new Font ("Nirmala UI", Font.PLAIN, 15));
-		opY.setAlignmentX(Component.CENTER_ALIGNMENT);
+		opY.setHorizontalAlignment(SwingConstants.CENTER);
 		opY.setForeground(Color.WHITE);
 		opY.setBackground(new Color(0, 144, 41) );
 		tipoOperador.add(opY);
@@ -102,23 +102,25 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 		
 		//Boton nuevo operador
 		opN= new JRadioButton("Nuevo operador");
-		opN.setFont(new Font ("Nirmala UI", Font.PLAIN, 15));
+		opN.setFont(new Font ("Nirmala UI", Font.PLAIN, 20));
 		opN.setForeground(Color.WHITE);
-		opN.setAlignmentX(Component.CENTER_ALIGNMENT);
+		opN.setHorizontalAlignment(SwingConstants.CENTER);
 		opN.setBackground(new Color(0, 144, 41));
 		tipoOperador.add(opN);
 		op.add(opN);
 		
 		p.add(op);
-
 		
+		JLabel relleno2= new JLabel(" ");
+		p.add(relleno2);	
 		return p;
 	}
 	
-	public String[] recogerInfo() {
+	//Recoger informacion ingresada dependiendo la opcion
+	public String[] recogerInfo() throws Exception {
 		if (tipoPanel.equals("Crear Subasta")) {
 			if (fecha.getText().equals("") && (fecha.getText().length()!=6)){
-				JOptionPane.showMessageDialog(null, "Ingrese una fecha valida","Error",JOptionPane.ERROR_MESSAGE);
+				throw new Exception();
 			}
 			String[] resp = {fecha.getText(),Integer.toString(operadorSeleccionado())};
 			return resp;
@@ -127,13 +129,14 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 	
 	}
 	
+	//LLamar a funciones para verificar
 	public void llamarFuncion() {
 		if (tipoPanel.equals("Crear Subasta")) {
 			interfaz.crearSubasta(this);
 		}
-	
 	}
 	
+	//Ver que operador esta seleccionado
 	public int operadorSeleccionado() {
 		JRadioButton s = seleccionado(tipoOperador);
 		int respuesta=0;
@@ -156,10 +159,13 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 		String comando = e.getActionCommand();
 		
 		 if (comando.equals("Continuar")) {
-				datos = recogerInfo();
-				espichado=true;
-				this.dispose();	
-				llamarFuncion();
+				try {
+					datos = recogerInfo();
+					this.dispose();	
+					llamarFuncion();
+				}catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Ingrese una fecha valida","Error",JOptionPane.ERROR_MESSAGE);
+				}
 			}
 	}
 	
