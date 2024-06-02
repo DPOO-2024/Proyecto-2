@@ -295,7 +295,7 @@ public class ConsolaComprador implements ConsolaBase{
 					ArrayList<Pieza> pieza = new ArrayList<Pieza>();
 					pieza.add(p);
 					
-					this.gal.imprimirPiezas(pieza);
+					Pieza.imprimirPieza(p);
 					System.out.println("\nEsta pieza fue comprada el "+ listaPiezas.get(i+1));
 					System.out.println("\nEsta pieza fue comprada por el precio de "+ listaPiezas.get(i+2));
 				}

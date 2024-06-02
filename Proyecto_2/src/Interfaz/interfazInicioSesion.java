@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -226,7 +227,22 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 				}
 			}			
 		}
-		else if (comando.equals("Continuar")) {
+		else if (comando.equals("aprovado")) {
+			
+				try {
+					ArrayList<String> datos2 = infoextra.recogerRegistro();
+					String rol = infoextra.rolSeleccionado();
+					mundo.getAdmin().verificarLogin(datos2.get(4), rol);
+					mundo.getAdmin().agregarUsuario(datos2, rol);
+					ventanaI.dispose();
+					
+					
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "El usuario que ingreso ya se encuentra registrado","Error",JOptionPane.ERROR_MESSAGE);
+					ventanaI.dispose();
+				}
+					
+			
 			
 		}
 	}

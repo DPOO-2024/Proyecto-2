@@ -3,6 +3,7 @@ package Interfaz;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,14 +15,18 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
+import Exceptions.PagoRechazado;
 import Modelo.Galeria;
 import Piezas.Pieza;
 
 public class interfazAdministrador extends JPanel implements ActionListener{
 	private Galeria mundo;
 	private interfazBase base;
+	private JDialog ventanaTS;
+	private JTextField fecha;
 	
 	private static final String CERRAR="Cerrar Sesion";
 	
@@ -177,6 +182,7 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 		o.add(cerrar);
 		return o;
 	}
+
 	
 	//Crear Subasta
 	public void crearSubasta(VentanasInfoSubasta ventana) {
@@ -199,6 +205,39 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 		}catch (MensajedeErrorException err) {
 			JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public void terminarsubasta() {
+		
+		ventanaTS = new JDialog(); 
+		ventanaTS.setTitle("Terminar Subasta");
+		ventanaTS.setSize(500, 550);
+		ventanaTS.setLocationRelativeTo(null);
+		ventanaTS.setLayout(new BorderLayout());
+		JLabel relleno= new JLabel("Finalizar una Subasta: ",JLabel.CENTER);
+		relleno.setFont(new Font("Nirmala UI",Font.BOLD,30));
+		relleno.setForeground(new Color(0, 144, 41 ));
+		ventanaTS.add(relleno,BorderLayout.NORTH);
+		
+		JPanel fechaPanel = new JPanel(new GridLayout(2,1));
+		JLabel label= new JLabel("Ingrese la fecha (AAMMDD) de la subasta que desea finalizar :",JLabel.CENTER);
+		fechaPanel.add(label);
+		
+		fecha = new JTextField("");
+		fecha.setSize(100, 20);
+		fecha.setFont(new Font("Nirmala UI",Font.PLAIN,30));
+		fechaPanel.add(fecha);
+		ventanaTS.add(fechaPanel, BorderLayout.CENTER);
+		JButton continuar = new JButton("finalizar");
+		continuar.setForeground(Color.WHITE);
+		continuar.setPreferredSize(new Dimension(100,30));
+		continuar.setBackground(new Color(0, 90, 26));
+		continuar.setActionCommand("finalizar");
+		continuar.addActionListener(this);
+		
+		ventanaTS.add(continuar,BorderLayout.SOUTH);
+		
+		ventanaTS.setVisible(true);
 	}
 
 	@Override
@@ -227,7 +266,7 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 			ventana.setVisible(true);		
 		}else if (comando.equals("Piezas Disponibles")) {
 			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
-			VentanaPiezas ventana = new VentanaPiezas(this,piezas,"Piezas Disponibles");
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles");
 			ventana.setVisible(true);
 			
 		}else if (comando.equals("Piezas Historial")) {
@@ -239,6 +278,26 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 		}else if (comando.equals("Historial Cliente")) {
 
 		}else if (comando.equals("Terminar Subasta")) {
+			terminarsubasta();
+		}else if (comando.equals("finalizar")) {
+			try {
+			if (fecha.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Ingrese un usuario","Error",JOptionPane.ERROR_MESSAGE);
+				throw new Exception();}
+			String fechat = fecha.getText();
+			int fechai=Integer.parseInt(fechat);
+			
+				mundo.terminarSubasta(fechai);
+				JOptionPane.showMessageDialog(null, "Se termino la subasta correctamente","Terminar subasta" , JOptionPane.INFORMATION_MESSAGE);
+				ventanaTS.dispose();
+			} catch (MensajedeErrorException err) {
+				JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+				ventanaTS.dispose();
+			}catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "No se pudo crear la Subasta","Error",JOptionPane.ERROR_MESSAGE);
+				ventanaTS.dispose();
+				
+			}
 
 		}else if (comando.equals("Cajero")) {
 

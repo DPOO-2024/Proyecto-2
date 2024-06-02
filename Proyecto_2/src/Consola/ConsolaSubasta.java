@@ -19,7 +19,7 @@ public class ConsolaSubasta {
 	public void iniciarOferta(Comprador c) throws MensajedeErrorException {
 
 		System.out.println("Esta es la oferta de piezas : ");
-		gal.imprimirPiezas(this.subasta.getInventario());
+		Pieza.imprimirPieza(this.subasta.getInventario().get(0));
 		if (this.subasta.isActiva()) {
 			System.out.println("Por favor, ingrese si esta interesado en hacer una oferta para una pieza (Si o No): ");
 			String ofertar = ConsolaInicial.scanner.nextLine().trim();

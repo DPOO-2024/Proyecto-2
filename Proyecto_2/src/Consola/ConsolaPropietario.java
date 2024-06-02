@@ -85,11 +85,11 @@ public class ConsolaPropietario implements ConsolaBase{
 	
 	public void estadoPiezas() {
 		System.out.println("Las piezas que tiene disponible son: \n ");
-		this.gal.imprimirPiezas(this.propietario.getEstadoPiezas());
+		Pieza.imprimirPieza(this.propietario.getEstadoPiezas().get(0));
 	}
 	
 	public void historialPiezas() {
 		System.out.println("El historial de sus piezas es: \n ");
-		this.gal.imprimirPiezas(this.propietario.getHistorialPiezas());
+		Pieza.imprimirPieza(this.propietario.getHistorialPiezas().get(0));
 	}
 }

@@ -27,12 +27,13 @@ import javax.swing.text.StyledDocument;
 import Piezas.Pieza;
 
 public class VentanaPiezas extends JDialog implements ActionListener {
-	private interfazAdministrador interfaz;
+	//private interfazAdministrador interfaz;
 	private ArrayList<Pieza> piezas;
 	private JList<String> lista;
 	
-	public VentanaPiezas(interfazAdministrador i, ArrayList<Pieza> p, String titulo) {
-		interfaz=i;
+	//public VentanaPiezas(interfazAdministrador i, ArrayList<Pieza> p, String titulo) {
+	public VentanaPiezas( ArrayList<Pieza> p, String titulo) {
+		//interfaz=i;
 		piezas=p;
 		
 		setTitle(titulo);

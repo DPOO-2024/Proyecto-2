@@ -70,7 +70,12 @@ public class interfazBase extends JFrame{
 	}
 
 	public void interfazComprador(Comprador resp) {
-		// TODO Auto-generated method stub
+		interfazComprador i = new interfazComprador(this,mundo,resp);
+		info.removeAll();
+		info.revalidate();
+		info.add(i);
+		info.repaint();
+		repaint();
 		
 	}
 
