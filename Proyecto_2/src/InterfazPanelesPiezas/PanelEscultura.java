@@ -29,7 +29,7 @@ public class PanelEscultura extends JPanel{
 	public PanelEscultura() {
 		panel = new JPanel(new GridLayout(7,2,20,20));
 		
-		JLabel m1 = new JLabel("Ingrese el alto de la Pieza:");;
+		JLabel m1 = new JLabel("Ingrese el alto de la Pieza:",JLabel.CENTER);;
 		m1.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m1.setForeground(new Color(0, 90, 26));
 		panel.add(m1);
@@ -39,7 +39,7 @@ public class PanelEscultura extends JPanel{
 		alto.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		panel.add(alto);
 		
-		JLabel m2 = new JLabel("Ingrese el ancho de la Pieza: ");;
+		JLabel m2 = new JLabel("Ingrese el ancho de la Pieza: ",JLabel.CENTER);;
 		m2.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m2.setForeground(new Color(0, 90, 26));
 		panel.add(m2);
@@ -49,7 +49,7 @@ public class PanelEscultura extends JPanel{
 		ancho.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		panel.add(ancho);
 		
-		JLabel m3 = new JLabel("Ingrese la profundidad de la Pieza: ");;
+		JLabel m3 = new JLabel("Ingrese la profundidad de la Pieza: ",JLabel.CENTER);
 		m3.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m3.setForeground(new Color(0, 90, 26));
 		panel.add(m3);
@@ -63,9 +63,10 @@ public class PanelEscultura extends JPanel{
 		JTextPane m5 = new JTextPane();
 		m5.setText("Ingrese los materiales \n(separados por comas) de la pieza: ");
 		m5.setEditable(false);
-		m5.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m5.setForeground(new Color(0,59,20));
-        StyledDocument doc = m5.getStyledDocument();
+		m5.setOpaque(false);
+		m5.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m5.setForeground(new Color(0, 90, 26));
+		StyledDocument doc = m5.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
         doc.setParagraphAttributes(0, doc.getLength(), center, false);
@@ -77,7 +78,7 @@ public class PanelEscultura extends JPanel{
         panel.add(materiales);
 		
 		
-		JLabel m4 = new JLabel("Ingrese lel peso de la Pieza: ");;
+		JLabel m4 = new JLabel("Ingrese el peso de la Pieza: ",JLabel.CENTER);;
 		m4.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m4.setForeground(new Color(0, 90, 26));
 		panel.add(m4);
@@ -90,12 +91,12 @@ public class PanelEscultura extends JPanel{
 		JTextPane m6 = new JTextPane();
 		m6.setText("Ingrese si su Pieza \nrequiere electricidad (Si o No):");
 		m6.setEditable(false);
-		m6.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m6.setForeground(new Color(0,59,20));
-        StyledDocument doc1 = m6.getStyledDocument();
-        SimpleAttributeSet center1 = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center1, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc1.getLength(), center, false);
+		m6.setOpaque(false);
+		m6.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m6.setForeground(new Color(0, 90, 26));
+		doc = m6.getStyledDocument();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
         panel.add(m6);
 		
         electricidad = new JTextField("");
@@ -106,12 +107,12 @@ public class PanelEscultura extends JPanel{
 		JTextPane m7 = new JTextPane();
 		m7.setText("Ingrese si hay alguna \nespecificacion de la instalación:  ");
 		m7.setEditable(false);
-		m7.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m7.setForeground(new Color(0,59,20));
-        StyledDocument doc2 = m7.getStyledDocument();
-        SimpleAttributeSet center2 = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center2, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc2.getLength(), center, false);
+		m7.setOpaque(false);
+		m7.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m7.setForeground(new Color(0, 90, 26));
+		doc = m7.getStyledDocument();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
         panel.add(m7);
 		
         extra = new JTextField("");

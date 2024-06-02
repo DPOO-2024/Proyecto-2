@@ -19,8 +19,10 @@ import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
 import Modelo.Galeria;
+import Piezas.Escultura;
 import Piezas.Pieza;
 import Usuarios.Propietario;
+import Usuarios.Usuario;
 
 public class InterfazPropietario extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
@@ -117,7 +119,7 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 	}
 	
 	public void agregarPieza(ArrayList<String> datos, String tipo) {
-		
+
 	}
 
 	public void actionPerformed(ActionEvent e) {

@@ -1,5 +1,6 @@
 package Modelo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import Consola.ConsolaInfo;
@@ -397,6 +398,34 @@ public class Galeria {
 	
   
 
+	public void agregarPieza(ArrayList<String> info, String tipo,Propietario pro) {
+		Pieza pieza=null;
+		
+		int fechaMax=Integer.parseInt(info.get(4));
+		boolean modalidad=true;
+		
+		String[] autoresf = info.get(3).split(",");
+		List<String> autores = Arrays.asList(autoresf);
+		
+		if (fechaMax==0) {
+			modalidad=true;
+		}
+		
+		if (tipo.equals("Escultura")) {
+			
+			String[] materialesf = info.get(11).split(",");
+			List<String> materiales = Arrays.asList(materialesf);
+			
+			boolean electricidad = false;
+			if (info.get(13).equals("Si") || info.get(13).equals("si")) {
+				electricidad = true;
+			}
+			
+			pieza=new Escultura("Escultura",(Usuario)pro, info.get(0), Integer.parseInt(info.get(1)), info.get(2), autores, modalidad, fechaMax, 
+					Integer.parseInt(info.get(5)), info.get(6), false, Integer.parseInt(info.get(7)), Integer.parseInt(info.get(8)), 
+					Integer.parseInt(info.get(9)), Integer.parseInt(info.get(10)),materiales,Integer.parseInt(info.get(12)), electricidad,info.get(14));
+		}
+	}
    
     
     

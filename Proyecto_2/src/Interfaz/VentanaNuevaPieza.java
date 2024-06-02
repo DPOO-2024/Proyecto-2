@@ -29,6 +29,7 @@ import InterfazPanelesPiezas.PanelEscultura;
 public class VentanaNuevaPieza extends JDialog implements ActionListener{
 	private JPanel ventana;
 	private JPanel afuera;
+	private JScrollPane panel;
 	private ArrayList<String> datos;
 	private JComboBox<String> tipo;
 	private String t;
@@ -52,7 +53,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		interfaz=i;
 
 		setTitle("Agregar Pieza");
-		setSize(800, 700);
+		setSize(950, 700);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
@@ -63,7 +64,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		tituloP.setForeground(new Color(0, 144, 41 ));
 		arriba.add(tituloP,BorderLayout.CENTER);
 		
-		JPanel ordenar = new JPanel(new GridLayout(1,4,20,20));
+		JPanel ordenar = new JPanel(new GridLayout(1,4,0,20));
 		JLabel relleno= new JLabel(" Elija el ",JLabel.RIGHT);
 		relleno.setFont(new Font("Nirmala UI",Font.BOLD,20));
 		relleno.setForeground(new Color(0, 144, 41 ));
@@ -96,8 +97,9 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		
 		
 		ventana=new JPanel();
-		afuera = new JPanel();
-		afuera.add(ventana);
+		panel = new JScrollPane(ventana);
+		afuera = new JPanel(new GridLayout(1,1));
+		afuera.add(panel);
 		add(afuera,BorderLayout.CENTER);
 		
 		setVisible(true);
@@ -116,12 +118,16 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 			//union.add(panelFotografia());
 		}
 		
+		
+		ventana.removeAll();
+		ventana.revalidate();
 		ventana.add(union);
-		JScrollPane panel = new JScrollPane(ventana);
-		afuera.removeAll();
-		afuera.revalidate();
-		afuera.add(panel,BorderLayout.CENTER);
-		pack();
+		ventana.repaint();
+		
+		panel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        panel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		panel.repaint();
+		
 		afuera.repaint();
 		
 		JButton continuar = new JButton("Agregar");
@@ -182,8 +188,8 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 				datos = recogerInfo();
 				this.dispose();	
 				llamarFuncion();
-			}catch (Exception e1) {
-				JOptionPane.showMessageDialog(null, "Ingrese una fecha valida","Error",JOptionPane.ERROR_MESSAGE);
+			}catch (MensajedeErrorException err) {
+				JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 			}
 		}else if(comando.equals("Tipo")) {
 			t = tipoElegido();
@@ -198,7 +204,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 	public JPanel general() {
 		JPanel general = new JPanel(new GridLayout(8,2,20,20));
 		
-		JLabel m1 = new JLabel("Ingrese el titulo:");;
+		JLabel m1 = new JLabel("Ingrese el titulo:",JLabel.CENTER);;
 		m1.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m1.setForeground(new Color(0, 90, 26));
 		general.add(m1);
@@ -208,7 +214,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		titulo.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		general.add(titulo);
 		
-		JLabel m2 = new JLabel("Ingrese el año de creación:");;
+		JLabel m2 = new JLabel("Ingrese el año de creación:",JLabel.CENTER);;
 		m2.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m2.setForeground(new Color(0, 90, 26));
 		general.add(m2);
@@ -218,7 +224,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		anio.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		general.add(anio);
 		
-		JLabel m3 = new JLabel("Ingrese el lugar de creación:");;
+		JLabel m3 = new JLabel("Ingrese el lugar de creación:",JLabel.CENTER);;
 		m3.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m3.setForeground(new Color(0, 90, 26));
 		general.add(m3);
@@ -228,7 +234,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		lugar.setFont(new Font("Nirmala UI",Font.PLAIN,18));
 		general.add(lugar);
 		
-		JLabel m4 = new JLabel("Ingrese los autores (separados por comas):");;
+		JLabel m4 = new JLabel("Ingrese los autores (separados por comas):",JLabel.CENTER);;
 		m4.setFont(new Font ("Nirmala UI", Font.BOLD, 20));
 		m4.setForeground(new Color(0, 90, 26));
 		general.add(m4);
@@ -241,8 +247,9 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		JTextPane m5 = new JTextPane();
 		m5.setText("Si desea aplicar la modalidad de \n\"marginalidad\" ingrese una fecha si \n no ingrese 0: ");
 		m5.setEditable(false);
-		m5.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m5.setForeground(new Color(0,59,20));
+		m5.setOpaque(false);
+		m5.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m5.setForeground(new Color(0, 90, 26));
         StyledDocument doc = m5.getStyledDocument();
         SimpleAttributeSet center = new SimpleAttributeSet();
         StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
@@ -257,12 +264,12 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		JTextPane m6 = new JTextPane();
 		m6.setText("Ingrese el valor inicial de la pieza, \nsi desea que sea incluida en \nuna subasta, si no ingrese 0: ");
 		m6.setEditable(false);
-		m6.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m6.setForeground(new Color(0,59,20));
-        StyledDocument doc1 = m6.getStyledDocument();
-        SimpleAttributeSet center1 = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center1, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc1.getLength(), center, false);
+		m6.setOpaque(false);
+		m6.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m6.setForeground(new Color(0, 90, 26));
+        doc = m6.getStyledDocument();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
         general.add(m6);
 		
         valorinicial = new JTextField("");
@@ -273,12 +280,12 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		JTextPane m7 = new JTextPane();
 		m7.setText("Ingrese  si desea mostrar su Pieza (Si o No): ");
 		m7.setEditable(false);
-		m7.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m7.setForeground(new Color(0,59,20));
-        StyledDocument doc2 = m7.getStyledDocument();
-        SimpleAttributeSet center2 = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center2, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc2.getLength(), center, false);
+		m7.setOpaque(false);
+		m7.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m7.setForeground(new Color(0, 90, 26));
+        doc = m7.getStyledDocument();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
         general.add(m7);
 		
         mostrar = new JTextField("");
@@ -289,12 +296,12 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		JTextPane m8 = new JTextPane();
 		m8.setText("Ingrese el valor fijo al que desea \nvender la Pieza, si no desea que \ntenga valor fijo ingrese 0: ");
 		m8.setEditable(false);
-		m8.setFont(new Font("Nirmala UI",Font.PLAIN,20));
-		m8.setForeground(new Color(0,59,20));
-        StyledDocument doc3 = m8.getStyledDocument();
-        SimpleAttributeSet center3 = new SimpleAttributeSet();
-        StyleConstants.setAlignment(center3, StyleConstants.ALIGN_CENTER);
-        doc.setParagraphAttributes(0, doc3.getLength(), center, false);
+		m8.setOpaque(false);
+		m8.setFont(new Font("Nirmala UI",Font.BOLD,20));
+		m8.setForeground(new Color(0, 90, 26));
+        doc = m8.getStyledDocument();
+        StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
         general.add(m8);
 		
         mostrar = new JTextField("");
