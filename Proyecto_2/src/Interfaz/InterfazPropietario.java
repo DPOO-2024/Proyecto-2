@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Modelo.Galeria;
+import Piezas.Pieza;
 import Usuarios.Propietario;
 
 public class InterfazPropietario extends JPanel implements ActionListener{
@@ -111,6 +114,10 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 		o.add(cerrar);
 		return o;
 	}
+	
+	public void agregarPieza() {
+		
+	}
 
 	public void actionPerformed(ActionEvent e) {
 		String comando = e.getActionCommand();
@@ -125,9 +132,13 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 		}else if (comando.equals("Agregar")) {
 			agregarPieza();
 		}else if (comando.equals("Disponibles")) {
-			agregarPieza();
+			ArrayList<Pieza> piezas = propietario.getEstadoPiezas();
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Propias Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+			ventana.setVisible(true);
 		}else if (comando.equals("No Disponibles")) {
-			agregarPieza();
+			ArrayList<Pieza> piezas = propietario.getHistorialPiezas();
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Propias No Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+			ventana.setVisible(true);
 		}
 	}
 

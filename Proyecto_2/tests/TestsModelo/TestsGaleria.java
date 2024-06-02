@@ -100,7 +100,7 @@ class TestsGaleria {
 			Comprador comprador = galeria.getAdmin().getComprador("maria_gomez");
 			Pieza pieza = galeria.getInventario().getPiezasDisponibles().get(3);
 			comprador.comprarPieza(4, "tarjeta", galeria,"fsfddsf","Sfddsfd","sdfsd","sdfds");
-			List<String> info = galeria.historialPiezas(pieza.getTitulo());
+			List<String> info = galeria.historialPiezas(pieza);
 			assertEquals(" Flores en Primavera",info.get(0), "No es el titulo correcto");
 			assertEquals("vendida",info.get(1), "Deberia estar vendida");
 			assertEquals("david_brown",info.get(2), "No es el propietario correcto");
@@ -114,7 +114,7 @@ class TestsGaleria {
 	void historialPiezaTest() {
 		try {
 			Pieza pieza = galeria.getInventario().getPiezasDisponibles().get(0);
-			List<String> info = galeria.historialPiezas(pieza.getTitulo());
+			List<String> info = galeria.historialPiezas(pieza);
 			assertEquals(" Escultura en Movimiento",info.get(0), "No es el titulo correcto");
 			assertEquals("disponible",info.get(1), "deberia estar disponible");
 			assertEquals("sarah_miller",info.get(2), "No es el propietario correcto");

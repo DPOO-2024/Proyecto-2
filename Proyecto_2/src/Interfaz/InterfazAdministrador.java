@@ -211,7 +211,7 @@ public class InterfazAdministrador extends JPanel implements ActionListener{
 		String[] datos=ventana.recogerDatos();
 		try {
 			mundo.agregarEmpleado(datos[0], datos[1],datos[2]);
-			JOptionPane.showMessageDialog(null, "La subasta se creo correctamente","Subasta",JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "El empleado se agrego correctamente","Subasta",JOptionPane.INFORMATION_MESSAGE);
 		}catch (MensajedeErrorException err) {
 			JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 		}

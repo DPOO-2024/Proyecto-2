@@ -15,17 +15,17 @@ public class Propietario extends Usuario{
 	
 	private int telefono;
 	
-	private List<Pieza> estadoPiezas;
+	private ArrayList<Pieza> estadoPiezas;
 	
-	private List<Pieza> historialPiezas;
+	private ArrayList<Pieza> historialPiezas;
 	
 	public Propietario(String login, String password , String nombre, String correo, int telefono) {
 		super(login, password, "Propietario");
 		this.nombre = nombre;
 		this.correo = correo;
 		this.telefono=telefono;
-		this.estadoPiezas = new ArrayList<>();
-		this.historialPiezas = new ArrayList<>();
+		this.estadoPiezas = new ArrayList<Pieza>();
+		this.historialPiezas = new ArrayList<Pieza>();
 	}
 	
 	public void ingresarPieza(Pieza pieza) {
@@ -62,19 +62,19 @@ public class Propietario extends Usuario{
 		this.telefono = telefono;
 	}
 
-	public List<Pieza> getEstadoPiezas() {
+	public ArrayList<Pieza> getEstadoPiezas() {
 		return estadoPiezas;
 	}
 
-	public void setEstadoPiezas(List<Pieza> estadoPiezas) {
+	public void setEstadoPiezas(ArrayList<Pieza> estadoPiezas) {
 		this.estadoPiezas = estadoPiezas;
 	}
 
-	public List<Pieza> getHistorialPiezas() {
+	public ArrayList<Pieza> getHistorialPiezas() {
 		return historialPiezas;
 	}
 
-	public void setHistorialPiezas(List<Pieza> historialPiezas) {
+	public void setHistorialPiezas(ArrayList<Pieza> historialPiezas) {
 		this.historialPiezas = historialPiezas;
 	}
 
