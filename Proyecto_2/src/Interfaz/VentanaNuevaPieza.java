@@ -228,6 +228,13 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 				seleccionarTipo(t);
 			} catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, "Elija un tipo de pieza valido","Error",JOptionPane.ERROR_MESSAGE);
+				ventana.removeAll();
+				ventana.revalidate();
+				ventana.repaint();
+				
+				panel.repaint();
+				
+				afuera.repaint();
 			}
 		}
 	}
