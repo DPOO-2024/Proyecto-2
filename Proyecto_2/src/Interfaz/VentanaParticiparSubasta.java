@@ -63,6 +63,10 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 		pedirfecha.add(aceptar);
 		pedirfecha.setVisible(true);
 		
+		JPanel completar = new JPanel(new GridLayout(2,2));
+		
+		
+		
 		
 	
 	}
