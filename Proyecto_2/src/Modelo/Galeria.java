@@ -88,6 +88,10 @@ public class Galeria {
 	public Subasta participarSubasta(int fecha,Comprador c, int opcion) throws Exception {
 			boolean encontrado = false;
 			Subasta subasta = null;
+			int size = subastasActivas.size();
+			if(size==0) {
+				throw new MensajedeErrorException("No hay ninguna subasta activa");
+			}
 			for (Subasta s : subastasActivas) {
 				if (s.getFechaSubasta()==fecha) {
 					subasta = s;
@@ -110,7 +114,8 @@ public class Galeria {
 				
 				}
 				
-			}		
+			}
+			
 			return subasta;	
 	}
 		

@@ -28,6 +28,7 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 	private Galeria principal;
 	private Subasta subasta;
 	private InterfazComprador intCom;
+	private JPanel grande;
 	private static final String CERRAR="Cerrar";
 
 	public VentanaParticiparSubasta(InterfazComprador interfazComprador, Galeria gal) {
@@ -35,12 +36,12 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 		this.intCom=interfazComprador;
 		
 		
-		setTitle("Participar Subasta");
-		setSize(500, 550);
-		setResizable(false);
-		setLocationRelativeTo(null);
-		setLayout(new BorderLayout());
+		pedirFechaSubasta();
 		
+	
+	}
+	
+	public void pedirFechaSubasta() {
 		pedirfecha = new JDialog();
 		pedirfecha.setTitle("fecha subasta");
 		pedirfecha.setSize(600, 700);
@@ -65,7 +66,12 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 		aceptar.addActionListener(this);
 		pedirfecha.add(aceptar);
 		pedirfecha.setVisible(true);
-		
+	}
+	public void crearVentanaParticipar() {
+		setTitle("Participar Subasta");
+		setSize(500, 550);
+		setResizable(false);
+		setLocationRelativeTo(null);
 		JButton piezas = new JButton(" Ver Piezas Disponibles en esta subasta");
 		piezas.setForeground(Color.WHITE);
 		piezas.setPreferredSize(new Dimension(100,30));
@@ -89,9 +95,8 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 		cerrar.setActionCommand(CERRAR);
 		cerrar.addActionListener(this);
 		add(cerrar,BorderLayout.SOUTH);
-		
-	
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -99,8 +104,11 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 		
 		if (comando.equals("aceptar")) {
 			try {
-				subasta = principal.participarSubasta(Integer.parseInt(fecha.getText()), intCom.getComprador(), 0);
+				int fechattt = Integer.parseInt(fecha.getText());
+				subasta = principal.participarSubasta(fechattt, intCom.getComprador(), 0);
+				JOptionPane.showMessageDialog(null, "Bien !! ya te encuentras en la subasta, ahora has tu oferta","participar subasta" , JOptionPane.INFORMATION_MESSAGE);
 				pedirfecha.dispose();
+				crearVentanaParticipar();
 			}catch (MensajedeErrorException err) {
 				JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 				pedirfecha.dispose();
@@ -124,7 +132,7 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 			int rta = JOptionPane.showConfirmDialog(null, "De verdad quiere salirte de la subasta?",
 					"Cerrar sesión", JOptionPane.YES_NO_OPTION);
 			if (rta == JOptionPane.OK_OPTION) {
-				subasta.quitarComprador(intCom.getComprador());
+				//subasta.quitarComprador(intCom.getComprador());
 				this.dispose();}
 		}
 		
