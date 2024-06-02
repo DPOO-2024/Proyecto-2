@@ -43,6 +43,8 @@ public class CargaGaleria {
 			ArrayList<String> piezasUsuarios=cargarUsuarios();
 			cargarPiezas();
 			asignarPiezas(piezasUsuarios);
+    		List<Pago> pagos = cargarPagos();
+    		this.galeria.getCajero().setPagos(pagos);
 		}catch(Exception e) {
 			throw e;
 		}
@@ -144,7 +146,7 @@ public class CargaGaleria {
 		
 	}
 	public List<Pago> cargarPagos() throws Exception {
-		String ubicacion = encontrarRuta() + "\\Datos\\"+ this.archivoGaleria;
+		String ubicacion = encontrarRuta() + "\\Datos\\"+ this.archivoPagos;
 		File archivof = new File(ubicacion);
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(archivof))) {
@@ -207,8 +209,6 @@ public class CargaGaleria {
                 		c = new Cajero(l[1].trim(), l[2].trim(), "Cajero");
                 		this.galeria.setCajero(c);
                 		this.galeria.getEmpleados().add(c);
-                		List<Pago> pagos = cargarPagos();
-                		c.setPagos(pagos);
                 	}else {
                 		throw new MensajedeErrorException("Ese rol de empleado no existe");
                 	}
