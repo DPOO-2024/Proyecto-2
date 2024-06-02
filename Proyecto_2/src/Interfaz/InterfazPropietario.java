@@ -116,7 +116,7 @@ public class InterfazPropietario extends JPanel implements ActionListener{
 		return o;
 	}
 	
-	public void agregarPieza() {
+	public void agregarPieza(ArrayList<String> datos, String tipo) {
 		
 	}
 

@@ -5,26 +5,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -34,7 +28,7 @@ import InterfazPanelesPiezas.PanelEscultura;
 
 public class VentanaNuevaPieza extends JDialog implements ActionListener{
 	private JPanel ventana;
-	private JScrollPane panel;
+	private JPanel afuera;
 	private ArrayList<String> datos;
 	private JComboBox<String> tipo;
 	private String t;
@@ -70,12 +64,12 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		arriba.add(tituloP,BorderLayout.CENTER);
 		
 		JPanel ordenar = new JPanel(new GridLayout(1,4,20,20));
-		JLabel relleno= new JLabel(" Elija el ");
+		JLabel relleno= new JLabel(" Elija el ",JLabel.RIGHT);
 		relleno.setFont(new Font("Nirmala UI",Font.BOLD,20));
 		relleno.setForeground(new Color(0, 144, 41 ));
 		ordenar.add(relleno);
 		
-		JLabel relleno1= new JLabel("tipo de Pieza: ",JLabel.CENTER);
+		JLabel relleno1= new JLabel("tipo de Pieza: ",JLabel.LEFT);
 		relleno1.setFont(new Font("Nirmala UI",Font.BOLD,20));
 		relleno1.setForeground(new Color(0, 144, 41 ));
 		ordenar.add(relleno1);
@@ -98,12 +92,13 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		ordenar.add(relleno3);
 		
 		arriba.add(ordenar,BorderLayout.SOUTH);
-		
 		add(arriba,BorderLayout.NORTH);
 		
+		
 		ventana=new JPanel();
-		panel = new JScrollPane(ventana);
-		add(panel,BorderLayout.CENTER);
+		afuera = new JPanel();
+		afuera.add(ventana);
+		add(afuera,BorderLayout.CENTER);
 		
 		setVisible(true);
 	}
@@ -121,11 +116,13 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 			//union.add(panelFotografia());
 		}
 		
-		panel.removeAll();
-		panel.revalidate();
-		panel.add(ventana);
-		panel.repaint();
-		this.repaint();
+		ventana.add(union);
+		JScrollPane panel = new JScrollPane(ventana);
+		afuera.removeAll();
+		afuera.revalidate();
+		afuera.add(panel,BorderLayout.CENTER);
+		pack();
+		afuera.repaint();
 		
 		JButton continuar = new JButton("Agregar");
 		continuar.setForeground(Color.WHITE);
@@ -143,32 +140,31 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		return ti;
 
 	}
-	/*
-	private JTextField titulo;
-	private JTextField anio;
-	private JTextField lugar;
-	private JTextField autores;
-	private JTextField tipoModalidad;
-	private JTextField valorinicial;
-	private JTextField mostrar;
-	private JTextField valorfijo;
-	public ArrayList<String> recogerInfo() {
+	
+	
+	public ArrayList<String> recogerInfo() throws MensajedeErrorException {
+		ArrayList<String> i=new ArrayList<String>();
 		
-		if (alto.getText().equals("") || ancho.getText().equals("") || profundidad.getText().equals("") || 
-				materiales.getText().equals("") || peso.getText().equals("") || electricidad.getText().equals("") || extra.getText().equals("")) {
+		if (titulo.getText().equals("") || anio.getText().equals("") || lugar.getText().equals("") || 
+				autores.getText().equals("") || tipoModalidad.getText().equals("") || valorinicial.getText().equals("") 
+				|| mostrar.getText().equals("")|| valorfijo.getText().equals("")) {
 				throw new MensajedeErrorException("No deje espacios en blanco");
 			}
-			ArrayList<String> resp = new ArrayList<String>(Arrays.asList(alto.getText(),ancho.getText(),profundidad.getText(),materiales.getText(),
-							peso.getText(),electricidad.getText(),extra.getText()));		
-			return resp;
+			ArrayList<String> resp = new ArrayList<String>(Arrays.asList( titulo.getText(),anio.getText(),lugar.getText(),autores.getText(),
+					tipoModalidad.getText(),valorinicial.getText(), mostrar.getText(),valorfijo.getText()));		
 		
-		if (t.equals("Escultura"))
+		if (t.equals("Escultura")) {
+			i = infoEscultura.getInfo();
+		}
 		
+		resp.addAll(i);
+		
+		return resp;
 	}
-	*/
+	
 	
 	public void llamarFuncion() {
-		interfaz.agregarPieza();
+		interfaz.agregarPieza(datos,t);
 	}
 	
 	public ArrayList<String> recogerDatos() {
@@ -183,7 +179,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		
 		if (comando.equals("Continuar")) {
 			try {
-				//datos = recogerInfo();
+				datos = recogerInfo();
 				this.dispose();	
 				llamarFuncion();
 			}catch (Exception e1) {
@@ -243,7 +239,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		general.add(autores);
 		
 		JTextPane m5 = new JTextPane();
-		m5.setText("Si desea aplicar la modalidad de \"marginalidad\" ingrese una fecha si no ingrese 0: ");
+		m5.setText("Si desea aplicar la modalidad de \n\"marginalidad\" ingrese una fecha si \n no ingrese 0: ");
 		m5.setEditable(false);
 		m5.setFont(new Font("Nirmala UI",Font.PLAIN,20));
 		m5.setForeground(new Color(0,59,20));
@@ -259,7 +255,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		general.add(tipoModalidad);
 		
 		JTextPane m6 = new JTextPane();
-		m6.setText("Ingrese el valor inicial de la pieza, si desea que sea incluida en una subasta, si no ingrese 0: ");
+		m6.setText("Ingrese el valor inicial de la pieza, \nsi desea que sea incluida en \nuna subasta, si no ingrese 0: ");
 		m6.setEditable(false);
 		m6.setFont(new Font("Nirmala UI",Font.PLAIN,20));
 		m6.setForeground(new Color(0,59,20));
@@ -291,7 +287,7 @@ public class VentanaNuevaPieza extends JDialog implements ActionListener{
 		general.add(mostrar);
 		
 		JTextPane m8 = new JTextPane();
-		m8.setText("Ingrese el valor fijo al que desea vender la Pieza, si no desea que tenga valor fijo ingrese 0: ");
+		m8.setText("Ingrese el valor fijo al que desea \nvender la Pieza, si no desea que \ntenga valor fijo ingrese 0: ");
 		m8.setEditable(false);
 		m8.setFont(new Font("Nirmala UI",Font.PLAIN,20));
 		m8.setForeground(new Color(0,59,20));

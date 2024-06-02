@@ -61,7 +61,7 @@ public class PanelEscultura extends JPanel{
 		
 		
 		JTextPane m5 = new JTextPane();
-		m5.setText("Ingrese los materiales (separados por comas) de la pieza: ");
+		m5.setText("Ingrese los materiales \n(separados por comas) de la pieza: ");
 		m5.setEditable(false);
 		m5.setFont(new Font("Nirmala UI",Font.PLAIN,20));
 		m5.setForeground(new Color(0,59,20));
@@ -88,7 +88,7 @@ public class PanelEscultura extends JPanel{
 		panel.add(peso);
 		
 		JTextPane m6 = new JTextPane();
-		m6.setText("Ingrese si su Pieza requiere electricidad (Si o No):");
+		m6.setText("Ingrese si su Pieza \nrequiere electricidad (Si o No):");
 		m6.setEditable(false);
 		m6.setFont(new Font("Nirmala UI",Font.PLAIN,20));
 		m6.setForeground(new Color(0,59,20));
@@ -104,7 +104,7 @@ public class PanelEscultura extends JPanel{
 		panel.add(electricidad);
 		
 		JTextPane m7 = new JTextPane();
-		m7.setText("Ingrese si hay alguna especificacion de la instalación:  ");
+		m7.setText("Ingrese si hay alguna \nespecificacion de la instalación:  ");
 		m7.setEditable(false);
 		m7.setFont(new Font("Nirmala UI",Font.PLAIN,20));
 		m7.setForeground(new Color(0,59,20));
