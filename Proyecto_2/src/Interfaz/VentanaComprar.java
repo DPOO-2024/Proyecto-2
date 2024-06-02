@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
 import Usuarios.Comprador;
 
 public class VentanaComprar extends JPanel implements ActionListener, ItemListener {
-	private interfazComprador principal;
+	private InterfazComprador principal;
 	private ButtonGroup Piezas;
 	private JComboBox<String> formaPago;
 	private JTextField numeroT;
@@ -38,7 +38,7 @@ public class VentanaComprar extends JPanel implements ActionListener, ItemListen
 	private String fPago;
 	private JDialog infoTarjeta;
 	
-	public VentanaComprar(interfazComprador interfazComprador) {
+	public VentanaComprar(InterfazComprador interfazComprador) {
 		this.principal=interfazComprador;
 		
 		setLayout(new GridLayout(5,1));

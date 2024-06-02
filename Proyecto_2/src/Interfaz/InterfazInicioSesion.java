@@ -23,11 +23,11 @@ import Usuarios.Comprador;
 import Usuarios.Propietario;
 
 
-public class interfazInicioSesion extends JPanel implements ActionListener{
+public class InterfazInicioSesion extends JPanel implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private int intentos;
 	private Galeria mundo;
-	private interfazBase base;
+	private InterfazBase base;
 	private JDialog ventanaI;
 	private String[] datos;
 	private ventanaInicioSesion infoVentana;
@@ -40,7 +40,7 @@ public class interfazInicioSesion extends JPanel implements ActionListener{
 	private static final String P="propietario";
 	private static final String R="registrar";
 	
-	public interfazInicioSesion(interfazBase b,Galeria m) {
+	public InterfazInicioSesion(InterfazBase b,Galeria m) {
 		mundo=m;
 		base=b;
 		

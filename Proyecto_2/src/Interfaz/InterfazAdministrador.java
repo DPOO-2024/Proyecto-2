@@ -3,7 +3,6 @@ package Interfaz;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -18,16 +17,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
-import Exceptions.PagoRechazado;
 import Modelo.Galeria;
 import Piezas.Autor;
 import Piezas.Pieza;
 import Usuarios.Comprador;
 
-public class interfazAdministrador extends JPanel implements ActionListener{
+public class InterfazAdministrador extends JPanel implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private Galeria mundo;
-	private interfazBase base;
+	private InterfazBase base;
 	private JDialog ventanaTS;
+	private JDialog ventanaA;
 	private JTextField fecha;
 	private JTextField login;
 	private JTextField password;
@@ -35,7 +35,7 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 	private static final String CERRAR="Cerrar Sesion";
 	
 	
-	public interfazAdministrador(interfazBase b,Galeria m) {
+	public InterfazAdministrador(InterfazBase b,Galeria m) {
 		mundo=m;
 		base=b;
 		
@@ -255,15 +255,15 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 	
 
 
-	public void asignarCajero() {
+	public void asignarNuevo(String titulo, String label,String comando) {
 		
-		JDialog ventanaA = new JDialog(); 
-		ventanaA.setTitle("Asignar Cajero");
+		ventanaA = new JDialog(); 
+		ventanaA.setTitle(titulo);
 		ventanaA.setSize(600, 550);
 		ventanaA.setLocationRelativeTo(null);
 		ventanaA.setLayout(new BorderLayout());
 		
-		JLabel relleno= new JLabel("Asigna un nuevo cajero: ",JLabel.CENTER);
+		JLabel relleno= new JLabel(label,JLabel.CENTER);
 		relleno.setFont(new Font("Nirmala UI",Font.BOLD,30));
 		relleno.setForeground(new Color(0, 144, 41 ));
 		ventanaA.add(relleno,BorderLayout.NORTH);
@@ -308,14 +308,16 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 		continuar.setForeground(Color.WHITE);
 		continuar.setPreferredSize(new Dimension(100,30));
 		continuar.setBackground(new Color(0, 90, 26));
-		continuar.setActionCommand("Cambiar");
+		continuar.setActionCommand(comando);
 		continuar.addActionListener(this);
 		
 		ventanaA.add(continuar,BorderLayout.SOUTH);
 		
 		ventanaA.setVisible(true);	
 	}
-
+	
+	
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -383,8 +385,7 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 				ventanaTS.dispose();
 			}
 		}else if (comando.equals("Cajero")) {
-			asignarCajero();
-
+			asignarNuevo("Asignar Cajero","Asignar nuevo cajero: ","cambiar");
 		}else if (comando.equals("cambiar")) {
 			try {
 				if (login.getText().equals("")|| password.getText().equals("")){
@@ -392,19 +393,32 @@ public class interfazAdministrador extends JPanel implements ActionListener{
 				}
 				mundo.asignarCajero(login.getText(), password.getText());;
 				JOptionPane.showMessageDialog(null, "Se cambio el cajero correctamente","Cambiar cajero" , JOptionPane.INFORMATION_MESSAGE);
-				ventanaTS.dispose();	
+				ventanaA.dispose();	
 			} catch (MensajedeErrorException err) {
 				JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
 			}catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, "No se pudo cambiar el cajero","Error",JOptionPane.ERROR_MESSAGE);
-				ventanaTS.dispose();
+				ventanaA.dispose();
 			}	
 		}else if (comando.equals("Admin")) {
-			
+			asignarNuevo("Asignar Administrador","Asignar nuevo Administrador: ","cambiarA");
 
+		}else if (comando.equals("cambiarA")) {
+			try {
+				if (login.getText().equals("")|| password.getText().equals("")){
+					throw new MensajedeErrorException("No deje espacios en blanco");
+				}
+				mundo.asignarAdministrador(login.getText(), password.getText());;
+				JOptionPane.showMessageDialog(null, "Se cambio el administrador correctamente","Cambiar administrador" , JOptionPane.INFORMATION_MESSAGE);
+				ventanaA.dispose();	
+				base.interfazIS();
+			} catch (MensajedeErrorException err) {
+				JOptionPane.showMessageDialog(null, err.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+			}catch (Exception e1) {
+				JOptionPane.showMessageDialog(null, "No se pudo cambiar el administrador","Error",JOptionPane.ERROR_MESSAGE);
+				ventanaA.dispose();
+			}	
 		}
-		
-		
 	}
 
 

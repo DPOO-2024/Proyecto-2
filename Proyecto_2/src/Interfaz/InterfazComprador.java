@@ -19,16 +19,16 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
-import Exceptions.PagoRechazado;
 import Modelo.Galeria;
+import Piezas.Autor;
 import Piezas.Pieza;
 import Usuarios.Comprador;
 
-public class interfazComprador extends JPanel implements ActionListener {
-	
+public class InterfazComprador extends JPanel implements ActionListener {
+	private static final long serialVersionUID = 1L;
 	private Comprador comprador;
 	private Galeria mundo;
-	private interfazBase base;
+	private InterfazBase base;
 	private VentanaComprar ventanaC;
 	private JDialog ventanaExtra;
 	private JDialog ventanaAumento;
@@ -39,7 +39,7 @@ public class interfazComprador extends JPanel implements ActionListener {
 	private static final String CERRAR="Cerrar Sesion";
 	
 	
-	public interfazComprador(interfazBase interfazBase, Galeria mundo, Comprador comprador) {
+	public InterfazComprador(InterfazBase interfazBase, Galeria mundo, Comprador comprador) {
 		this.mundo=mundo;
 		this.base=interfazBase;
 		this.comprador=comprador;
@@ -289,7 +289,7 @@ public class interfazComprador extends JPanel implements ActionListener {
 			ventanaComprar();			
 		}else if (comando.equals("Piezas Disponibles")) {
 			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
-			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles","Elija la pieza de la cual quiera ver información General");
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
 			ventana.setVisible(true);
 			
 		}
@@ -300,8 +300,19 @@ public class interfazComprador extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "Se realizo el aumento correctamente","aumento de cupo" , JOptionPane.INFORMATION_MESSAGE);
 			ventanaAumento.dispose();
 			
-			
-			
+		}else if (comando.equals("Piezas Disponibles")) {
+			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Piezas Disponibles","Elija la pieza de la cual quiera ver información General",mundo);
+			ventana.setVisible(true);		
+		}else if (comando.equals("Historial Pieza")) {
+			ArrayList<Pieza> piezas = mundo.mostrarPiezasDisponibles();
+			piezas.addAll(mundo.mostrarHistorialPiezas());
+			VentanaPiezas ventana = new VentanaPiezas(piezas,"Historial de una Pieza","Elija la pieza de la cual quiera ver su historia",mundo);
+			ventana.setVisible(true);
+		}else if (comando.equals("Historial Artista")) {
+			ArrayList<Autor> autores = mundo.getInventario().getAutores();
+			VentanaAutores ventana = new VentanaAutores(autores,mundo);
+			ventana.setVisible(true);
 			
 		}else if (comando.equals("registrarse")) {
 			try {

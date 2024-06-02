@@ -10,12 +10,12 @@ import Modelo.Galeria;
 import Usuarios.Comprador;
 import Usuarios.Propietario;
 
-public class interfazBase extends JFrame{
+public class InterfazBase extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private Galeria mundo;
 	private JPanel info;
 	
-	public interfazBase(Galeria g) {
+	public InterfazBase(Galeria g) {
 		mundo=g;
 		setTitle(g.getNombre());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -39,7 +39,7 @@ public class interfazBase extends JFrame{
 	}
 	
 	public void interfazIS() {
-		interfazInicioSesion i = new interfazInicioSesion(this,mundo);
+		InterfazInicioSesion i = new InterfazInicioSesion(this,mundo);
 		info.removeAll();
 		info.revalidate();
 		info.add(i);
@@ -48,7 +48,7 @@ public class interfazBase extends JFrame{
 	}
 	
 	public void interfazAdmin() {
-		interfazAdministrador i = new interfazAdministrador(this,mundo);
+		InterfazAdministrador i = new InterfazAdministrador(this,mundo);
 		info.removeAll();
 		info.revalidate();
 		info.add(i);
@@ -56,21 +56,18 @@ public class interfazBase extends JFrame{
 		repaint();
 	}
 	
-	
-	public static void main(String[] args) {
-		Galeria galeriaNueva = new Galeria();
-		galeriaNueva.cargarGaleria(galeriaNueva);
-		interfazBase base = new interfazBase(galeriaNueva);
-	}
-
-
 	public void interfazEmpleado(Empleado resp) {
-		
+		InterfazEmpleado i = new InterfazEmpleado(this,mundo,resp);
+		info.removeAll();
+		info.revalidate();
+		info.add(i);
+		info.repaint();
+		repaint();
 		
 	}
 
 	public void interfazComprador(Comprador resp) {
-		interfazComprador i = new interfazComprador(this,mundo,resp);
+		InterfazComprador i = new InterfazComprador(this,mundo,resp);
 		info.removeAll();
 		info.revalidate();
 		info.add(i);
@@ -83,4 +80,14 @@ public class interfazBase extends JFrame{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	public static void main(String[] args) {
+		Galeria galeriaNueva = new Galeria();
+		galeriaNueva.cargarGaleria(galeriaNueva);
+		new InterfazBase(galeriaNueva);
+	}
+
+
+
 }

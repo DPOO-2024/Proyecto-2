@@ -29,10 +29,10 @@ public class VentanasInfoSubasta extends JDialog implements ActionListener{
 	private ButtonGroup tipoOperador;
 	private JRadioButton opY;
 	private JRadioButton opN;
-	private interfazAdministrador interfaz;
+	private InterfazAdministrador interfaz;
 
 	
-	public VentanasInfoSubasta(String titulo,String t,String boton,interfazAdministrador i) {
+	public VentanasInfoSubasta(String titulo,String t,String boton,InterfazAdministrador i) {
 		tipoPanel=t;
 		interfaz=i;
 

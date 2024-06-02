@@ -25,9 +25,9 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener 
 	private JTextField fecha;
 	private Galeria principal;
 	private Subasta subasta;
-	private interfazComprador intCom;
+	private InterfazComprador intCom;
 
-	public VentanaParticiparSubasta(interfazComprador interfazComprador, Galeria gal) {
+	public VentanaParticiparSubasta(InterfazComprador interfazComprador, Galeria gal) {
 		this.principal=gal;
 		this.intCom=interfazComprador;
 		

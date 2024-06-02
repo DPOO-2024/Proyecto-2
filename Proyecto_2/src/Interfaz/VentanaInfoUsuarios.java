@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 public class VentanaInfoUsuarios extends JDialog implements ActionListener{
 	private JPanel ventana;
 	private String tipoPanel;
-	private interfazAdministrador interfaz;
+	private InterfazAdministrador interfaz;
 	private JTextField login;
 	private JTextField password;
 	private ButtonGroup tipoOperador;
@@ -32,7 +32,7 @@ public class VentanaInfoUsuarios extends JDialog implements ActionListener{
 	
 
 	
-	public VentanaInfoUsuarios(String titulo,String t,String boton,interfazAdministrador i) {
+	public VentanaInfoUsuarios(String titulo,String t,String boton,InterfazAdministrador i) {
 		tipoPanel=t;
 		interfaz=i;
 		
@@ -155,7 +155,6 @@ public class VentanaInfoUsuarios extends JDialog implements ActionListener{
 	}
 	
 	public void llamarFuncion() {
-		
 		if (tipoPanel.equals("Agregar Empleado")) {
 			interfaz.agregarEmpleado(this);
 		}
