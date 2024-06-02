@@ -22,4 +22,5 @@ public class CentralPersistencia {
 		e.printStackTrace();
 	}
 	}
+	
 }
