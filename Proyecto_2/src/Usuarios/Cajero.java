@@ -165,6 +165,7 @@ public class Cajero extends Empleado{
 			 }else if (i<12) {
 				 cantidad.put(entry.getValue(), Integer.valueOf(0));
 			 } 
+			 i++;
 		 }
 		 
 		 

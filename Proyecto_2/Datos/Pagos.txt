@@ -34,5 +34,3 @@
 95,Efectivo,,000,,Maria Torres,240634
 460,Transferencia,,000,Banco Santander,Carlos Molina,240735
 250,Tarjeta,6789012367890123,678,Visa,Elena Diaz,240836
-
-

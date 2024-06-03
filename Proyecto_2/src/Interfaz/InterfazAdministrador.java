@@ -174,7 +174,7 @@ public class InterfazAdministrador extends JPanel implements ActionListener{
 		b.add(asignarA);
 		
 		JButton mostrarV=new JButton("Mostrar Mes con Mayor Ventas");
-		mostrarV.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
+		mostrarV.setFont(new Font ("Book Antiqua", Font.BOLD, 15));
 		mostrarV.setForeground(Color.WHITE);
 		mostrarV.setPreferredSize(new Dimension(250,50));
 		mostrarV.setBackground(new Color(0, 144, 41));
