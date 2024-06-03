@@ -68,7 +68,7 @@ public class ConsolaAdministrador implements ConsolaBase{
 	                	//ConsolaInfo.mostrarHistorialArtista(this.gal);
 	                	break;
 	                case 8:
-	                	mostrarHistorialCliente();
+	                	//mostrarHistorialCliente();
 	                    break;
 	                case 9:
 	                	terminarSubasta();
@@ -195,11 +195,11 @@ public class ConsolaAdministrador implements ConsolaBase{
 	
 	
 	
-	public static String mostrarHistorialCliente(Comprador c,Galeria gal) {
+	/*public static String mostrarHistorialCliente(Comprador c,Galeria gal) {
 		try {
     		System.out.print("Por favor, ingrese el login del Usuario: ");
     		String loginU = ConsolaInicial.scanner.nextLine().trim();
-    		this.gal.getAdmin().historialComprador(loginU);
+    		//this.gal.getAdmin().historialComprador(loginU);
     		List<List<String>> compras = gal.getAdmin().historialComprador(loginU);
     		System.out.println("\nHISTORIAL DEL COMPRADOR: ");
     		System.out.println("Piezas que ha comprado: ");
@@ -242,5 +242,5 @@ public class ConsolaAdministrador implements ConsolaBase{
 	
 	public static void main(String[] args) {
 		//Esto como seria 
-	}
+	}*/
 }

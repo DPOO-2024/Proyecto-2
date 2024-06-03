@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
+import InterfazVentanas.VentanaNuevaPieza;
+import InterfazVentanas.VentanaPiezas;
 import Modelo.Galeria;
 import Piezas.Escultura;
 import Piezas.Pieza;

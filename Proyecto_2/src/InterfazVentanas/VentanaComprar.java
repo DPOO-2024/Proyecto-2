@@ -1,4 +1,4 @@
-package Interfaz;
+package InterfazVentanas;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,6 +24,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import Interfaz.InterfazComprador;
 import Usuarios.Comprador;
 
 public class VentanaComprar extends JPanel implements ActionListener, ItemListener {
@@ -182,8 +183,7 @@ public class VentanaComprar extends JPanel implements ActionListener, ItemListen
 	public void itemStateChanged(ItemEvent e) {
 		
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-	        JComboBox<String> comboBox = (JComboBox<String>) e.getSource();
-	        fPago = (String) comboBox.getSelectedItem();
+	        fPago = e.getItem().toString();
 
 	        
 	        if (fPago.equals("Tarjeta")) {
@@ -284,7 +284,7 @@ public class VentanaComprar extends JPanel implements ActionListener, ItemListen
 	}
 	
 	public String pasarelaSeleccionado() throws Exception {
-		JRadioButton s = seleccionado(tipoPasarela);
+		JRadioButton s = seleccionado2(tipoPasarela);
 		String respuesta =  s.getText();
 		return respuesta;
 	}

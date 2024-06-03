@@ -144,11 +144,18 @@ public class Galeria {
 
 	}
 
-	public Subasta encontrarSubasta(int fecha) {
+	public Subasta encontrarSubasta(int fecha) throws MensajedeErrorException {
 		Subasta subasta = null;
+		if(!subastasActivas.isEmpty()) {
 		for (Subasta s : subastasActivas) {
 			if (s.getFechaSubasta()==fecha) {
-				subasta = s;}}
+				subasta = s;}}}
+		else {
+			throw new MensajedeErrorException("No hay subastas activas ");
+		}
+		if(subasta==null) {
+			throw new MensajedeErrorException("No hay subastas activas para esa fecha");
+		}
 		return subasta;
 	}
 	

@@ -1,4 +1,4 @@
-package Interfaz;
+package InterfazVentanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,6 +24,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import Exceptions.MensajedeErrorException;
+import Interfaz.InterfazPropietario;
 import InterfazPanelesPiezas.PanelEscultura;
 import InterfazPanelesPiezas.PanelFotografia;
 import InterfazPanelesPiezas.PanelImpresion;

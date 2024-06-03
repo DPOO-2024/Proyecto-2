@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
+import InterfazVentanas.VentanaAutores;
+import InterfazVentanas.VentanaClientes;
+import InterfazVentanas.VentanaPiezas;
 import Modelo.Empleado;
 import Modelo.Galeria;
 import Piezas.Autor;
