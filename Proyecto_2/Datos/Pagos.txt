@@ -8,29 +8,29 @@
 980,Tarjeta,8901234589012345,890,Visa,Lucia Ramirez,241008
 440,Transferencia,,000,Banco Santander,Diego Torres,241109
 75,Efectivo,,000,,Carmen Jimenez,241210
-3500,Tarjeta,2345678923456789,234,Mastercard,Victor Ruiz,241311
-125,Efectivo,,000,,Isabel Diaz,241412
-1200,Transferencia,,000,Banco BBVA,Alberto Ortiz,241513
-180,Efectivo,,000,,Elena Suarez,241614
-1550,Tarjeta,6789012367890123,678,American Express,Fernando Morales,241715
-90,Efectivo,,000,,Ana Vargas,241816
-260,Transferencia,,000,Banco Santander,Raul Sanchez,241917
-300,Tarjeta,9012345690123456,901,Visa,Beatriz Molina,242018
-410,Transferencia,,000,Banco BBVA,Pedro Castillo,242119
-80,Efectivo,,000,,Patricia Herrera,242220
-1100,Tarjeta,0123456701234567,012,Mastercard,Daniel Torres,242321
-5600,Efectivo,,000,,Laura Moreno,242422
-720,Transferencia,,000,Banco Santander,Martin Castro,242523
-1250,Tarjeta,3456789034567890,345,American Express,Laura Ruiz,242624
-95,Efectivo,,000,,Carlos Gomez,242725
-340,Transferencia,,000,Banco BBVA,Mariana Lopez,242826
-780,Tarjeta,1234567812345678,123,Visa,Ricardo Perez,242927
-160,Efectivo,,000,,Fernanda Sanchez,243028
-920,Transferencia,,000,Banco Santander,Jose Ramirez,243129
-1050,Tarjeta,4567890145678901,456,Mastercard,Ana Gonzalez,243230
-540,Transferencia,,000,Banco BBVA,David Fernandez,243331
-375,Efectivo,,000,,Andrea Torres,243432
-210,Tarjeta,5678901256789012,567,American Express,Luis Herrera,243533
-95,Efectivo,,000,,Maria Torres,243634
-460,Transferencia,,000,Banco Santander,Carlos Molina,243735
-250,Tarjeta,6789012367890123,678,Visa,Elena Diaz,243836
+3500,Tarjeta,2345678923456789,234,Mastercard,Victor Ruiz,240111
+125,Efectivo,,000,,Isabel Diaz,240412
+1200,Transferencia,,000,Banco BBVA,Alberto Ortiz,240513
+180,Efectivo,,000,,Elena Suarez,240614
+1550,Tarjeta,6789012367890123,678,American Express,Fernando Morales,240715
+90,Efectivo,,000,,Ana Vargas,240816
+260,Transferencia,,000,Banco Santander,Raul Sanchez,240917
+300,Tarjeta,9012345690123456,901,Visa,Beatriz Molina,241018
+410,Transferencia,,000,Banco BBVA,Pedro Castillo,241119
+80,Efectivo,,000,,Patricia Herrera,241220
+1100,Tarjeta,0123456701234567,012,Mastercard,Daniel Torres,241121
+5600,Efectivo,,000,,Laura Moreno,240422
+720,Transferencia,,000,Banco Santander,Martin Castro,241023
+1250,Tarjeta,3456789034567890,345,American Express,Laura Ruiz,240624
+95,Efectivo,,000,,Carlos Gomez,240725
+340,Transferencia,,000,Banco BBVA,Mariana Lopez,240826
+780,Tarjeta,1234567812345678,123,Visa,Ricardo Perez,240927
+160,Efectivo,,000,,Fernanda Sanchez,241028
+920,Transferencia,,000,Banco Santander,Jose Ramirez,240129
+1050,Tarjeta,4567890145678901,456,Mastercard,Ana Gonzalez,241230
+540,Transferencia,,000,Banco BBVA,David Fernandez,240331
+375,Efectivo,,000,,Andrea Torres,240432
+210,Tarjeta,5678901256789012,567,American Express,Luis Herrera,240533
+95,Efectivo,,000,,Maria Torres,240634
+460,Transferencia,,000,Banco Santander,Carlos Molina,240735
+250,Tarjeta,6789012367890123,678,Visa,Elena Diaz,240836
