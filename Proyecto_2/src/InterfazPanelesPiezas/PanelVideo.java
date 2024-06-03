@@ -25,7 +25,7 @@ public class PanelVideo extends JPanel{
 	private JTextField formato;
 
 	public PanelVideo() {
-		panel = new JPanel(new GridLayout(5,2,20,20));
+		panel = new JPanel(new GridLayout(6,2,20,20));
 		
 		JTextPane m1 = new JTextPane();
 		m1.setText("Ingrese la duración de la Pieza (En minutos): ");
