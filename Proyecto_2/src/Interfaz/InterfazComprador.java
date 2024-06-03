@@ -10,19 +10,26 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
+import Modelo.Administrador;
 import Modelo.Galeria;
+import Modelo.Subasta;
 import Piezas.Autor;
 import Piezas.Pieza;
 import Usuarios.Comprador;
+import Usuarios.Operador;
 
 public class InterfazComprador extends JPanel implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +39,7 @@ public class InterfazComprador extends JPanel implements ActionListener {
 	private VentanaComprar ventanaC;
 	private JDialog ventanaExtra;
 	private JDialog ventanaAumento;
+	private JDialog ventanaMostrar;
 	private JTextField valor;
 	private JDialog ventanaRegistro;
 	private JTextField fechaR;
@@ -148,14 +156,6 @@ public class InterfazComprador extends JPanel implements ActionListener {
 		asignarA.addActionListener(this);
 		b.add(asignarA);
 		
-		JButton asignarr=new JButton("Ver compras realizadas");
-		asignarr.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
-		asignarr.setForeground(Color.WHITE);
-		asignarr.setPreferredSize(new Dimension(250,50));
-		asignarr.setBackground(new Color(0, 144, 41));
-		asignarr.setActionCommand("compras realizadas");
-		asignarr.addActionListener(this);
-		b.add(asignarr);
 		
 		return b;
 	}
@@ -271,8 +271,62 @@ public class InterfazComprador extends JPanel implements ActionListener {
 		
 	}
 	
+	public void mostrarSubastas() throws MensajedeErrorException {
+		ventanaMostrar = new JDialog();
+		ventanaMostrar.setTitle("Subastas Activas");
+		ventanaMostrar.setSize(800, 600);
+		ventanaMostrar.setResizable(false);
+		ventanaMostrar.setLocationRelativeTo(null);
+		ventanaMostrar.setLayout(new BorderLayout());
+		
+		JPanel superior = new JPanel(new BorderLayout());
+		JLabel t= new JLabel("Subasta Activas",JLabel.CENTER);
+		t.setFont(new Font("Nirmala UI",Font.BOLD,30));
+		t.setForeground(new Color(0, 144, 41 ));
+		superior.add(t,BorderLayout.CENTER);
+		
+		ventanaMostrar.add(superior,BorderLayout.NORTH);
+		
+		JPanel ordenar= new JPanel(new GridLayout(3,1,0,10));
+		JLabel relleno1= new JLabel(" ");
+		ordenar.add(relleno1);
+		JPanel panelP = panelLista();
+		ordenar.add(panelP);
+		JLabel relleno2= new JLabel(" ");
+		ordenar.add(relleno2);
+		ventanaMostrar.add(ordenar, BorderLayout.CENTER);
+		ventanaMostrar.setVisible(true);
+	}
 	
 	
+	public JPanel panelLista() throws MensajedeErrorException {
+		
+		JPanel panel = new JPanel(new BorderLayout());
+
+		DefaultListModel<String> titulos = new DefaultListModel<String>();
+		int i=1;
+		if (mundo.getSubastasActivas().isEmpty()) {
+			throw new MensajedeErrorException("No hay subastas disponibles");
+
+		}
+		else {
+			for (Subasta s:mundo.getSubastasActivas()) {
+				String fila = " Subasta N."+Integer.toString(i)+ " -> "+s.getFechaSubasta();
+				titulos.addElement(fila);
+				i++;
+			}
+		}
+		
+		JList<String> lista = new JList<String>(titulos);
+		lista.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+		DefaultListCellRenderer renderer =  (DefaultListCellRenderer)lista.getCellRenderer();  
+		renderer.setHorizontalAlignment(JLabel.CENTER);
+		
+		JScrollPane scroll = new JScrollPane(lista);
+		panel.add(scroll,BorderLayout.CENTER);
+		
+		return panel;
+	}
 	
 
 	@Override
@@ -346,11 +400,20 @@ public class InterfazComprador extends JPanel implements ActionListener {
 			registrarseSubasta();
 		}else if (comando.equals("Participar subasta")) {
 			JOptionPane.showMessageDialog(null, "Recuerda que para poder participar en una subasta debes estar registrado en ella","Participar subasta" , JOptionPane.INFORMATION_MESSAGE);
-			JOptionPane.showMessageDialog(null, "Hola","Participar subasta" , JOptionPane.INFORMATION_MESSAGE);
-
-			//VentanaParticiparSubasta ventana = new VentanaParticiparSubasta(this,mundo);
-			//ventana.setVisible(true);
-		}
+			VentanaParticiparSubasta ventana = new VentanaParticiparSubasta(this,mundo);
+			ventana.setVisible(true);
+		}else if (comando.equals("subastas activas")) {
+			try {
+				mostrarSubastas();
+			} catch (MensajedeErrorException e1) {
+				JOptionPane.showMessageDialog(this,e1.getMessage(),"Error",JOptionPane.INFORMATION_MESSAGE);
+				ventanaMostrar.dispose();
+			}}else if (comando.equals("compras realizadas")) {
+				
+			}else if (comando.equals("resultados")) {
+				VentanaFinalSubasta ventana = new VentanaFinalSubasta(this,mundo);
+				ventana.setVisible(true);
+			}
 
 	}
 
@@ -380,6 +443,13 @@ public class InterfazComprador extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "No se pudo realizar la compra","Error",JOptionPane.ERROR_MESSAGE);
 			ventanaExtra.dispose();
 		}	
+		
+	}
+
+
+	public void ofertaPieza(Administrador admin, String string, String string2, Operador operador, Pieza pieza,
+			String string3, String string4, String string5, String string6) throws MensajedeErrorException {
+		comprador.hacerOferta(admin, string, string2, operador, pieza, string3, string4, string5, string6);
 		
 	}
 

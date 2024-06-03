@@ -132,7 +132,7 @@ public class VentanaPiezas extends JDialog implements ActionListener {
 		String infoPieza="";
 		
 		if (t.equals("Piezas Disponibles")||t.equals("Historial Piezas (No disponibles)")
-				||t.equals("Piezas Propias Disponibles")||t.equals("Piezas Propias No Disponibles")) {
+				||t.equals("Piezas Propias Disponibles")||t.equals("Piezas Propias No Disponibles")||t.equals("Piezas Disponibles subasta")) {
 			infoPieza=Pieza.imprimirPieza(p);
 		}else if (t.equals("Historial de una Pieza")) {
 			infoPieza=Pieza.mostrarHistorialPieza(mundo,p);

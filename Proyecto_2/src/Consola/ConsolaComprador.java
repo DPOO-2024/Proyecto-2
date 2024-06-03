@@ -54,10 +54,10 @@ public class ConsolaComprador implements ConsolaBase{
 	                	this.gal.mostrarPiezasDisponibles();
 	                    break;
 	                case 4:
-	                	ConsolaInfo.mostrarHistorialPieza(this.gal);
+	                	//ConsolaInfo.mostrarHistorialPieza(this.gal);
 	                	break;
 	                case 5:
-	                	ConsolaInfo.mostrarHistorialArtista(this.gal);
+	                	//ConsolaInfo.mostrarHistorialArtista(this.gal);
 	                    break;
 	                case 6:
 	                	mostrarSubastasActivas();

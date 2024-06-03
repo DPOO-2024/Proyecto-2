@@ -51,10 +51,10 @@ public class ConsolaEmpleadoGaleria implements ConsolaBase {
 	                	this.gal.mostrarHistorialPiezas();
 	                    break;
 	                case 5:
-	                	ConsolaInfo.mostrarHistorialPieza(this.gal);
+	                	//ConsolaInfo.mostrarHistorialPieza(this.gal);
 	                    break;
 	                case 6:
-	                	ConsolaInfo.mostrarHistorialArtista(this.gal);
+	                	//ConsolaInfo.mostrarHistorialArtista(this.gal);
 	                	break;
 	                case 7:
 	                    System.out.println("Cerrando sesión...");

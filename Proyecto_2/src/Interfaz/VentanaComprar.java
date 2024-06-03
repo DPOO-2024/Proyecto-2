@@ -182,8 +182,7 @@ public class VentanaComprar extends JPanel implements ActionListener, ItemListen
 	public void itemStateChanged(ItemEvent e) {
 		
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-	        JComboBox<String> comboBox = (JComboBox<String>) e.getSource();
-	        fPago = (String) comboBox.getSelectedItem();
+	        fPago = e.getItem().toString();
 
 	        
 	        if (fPago.equals("Tarjeta")) {
@@ -284,7 +283,7 @@ public class VentanaComprar extends JPanel implements ActionListener, ItemListen
 	}
 	
 	public String pasarelaSeleccionado() throws Exception {
-		JRadioButton s = seleccionado(tipoPasarela);
+		JRadioButton s = seleccionado2(tipoPasarela);
 		String respuesta =  s.getText();
 		return respuesta;
 	}
