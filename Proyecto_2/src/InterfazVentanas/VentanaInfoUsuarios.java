@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import Interfaz.InterfazAdministrador;
 
 public class VentanaInfoUsuarios extends JDialog implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JPanel ventana;
 	private String tipoPanel;
 	private InterfazAdministrador interfaz;

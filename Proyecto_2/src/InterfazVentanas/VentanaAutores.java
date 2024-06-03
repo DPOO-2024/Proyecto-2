@@ -24,17 +24,15 @@ import javax.swing.text.StyledDocument;
 
 import Modelo.Galeria;
 import Piezas.Autor;
-import Piezas.Pieza;
 
 public class VentanaAutores extends JDialog implements ActionListener {
-	//private interfazAdministrador interfaz;
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Autor> autores;
 	private JList<String> lista;
 	private Galeria mundo;
 	
-	//public VentanaPiezas(interfazAdministrador i, ArrayList<Pieza> p, String titulo) {
+
 	public VentanaAutores( ArrayList<Autor> a, Galeria m) {
-		//interfaz=i;
 		mundo=m;
 		autores=a;
 		
@@ -109,8 +107,7 @@ public class VentanaAutores extends JDialog implements ActionListener {
 	//Mostrar info de Pieza seleccionada
 	public void mostrarInfo() {
 		int i = lista.getSelectedIndex();
-		String val = (String) lista.getSelectedValue();
-		
+
 		JDialog info = new JDialog();
 		info.setTitle("Información Autor");
 		info.setSize(700, 500);

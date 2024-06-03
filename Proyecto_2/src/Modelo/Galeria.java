@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import Consola.ConsolaInfo;
 import Exceptions.MensajedeErrorException;
 import Usuarios.*;
 import Piezas.*;

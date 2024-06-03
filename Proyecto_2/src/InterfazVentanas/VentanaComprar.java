@@ -25,9 +25,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import Interfaz.InterfazComprador;
-import Usuarios.Comprador;
 
 public class VentanaComprar extends JPanel implements ActionListener, ItemListener {
+	private static final long serialVersionUID = 1L;
 	private InterfazComprador principal;
 	private ButtonGroup Piezas;
 	private JComboBox<String> formaPago;

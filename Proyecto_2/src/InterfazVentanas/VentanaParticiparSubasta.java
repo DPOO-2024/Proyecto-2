@@ -1,6 +1,5 @@
 package InterfazVentanas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,7 +31,7 @@ import Modelo.Subasta;
 import Piezas.Pieza;
 
 public class VentanaParticiparSubasta extends JDialog implements ActionListener, ItemListener {
-	
+	private static final long serialVersionUID = 1L;
 	private JTextField fecha;
 	private Galeria principal;
 	private Subasta subasta;
@@ -326,21 +325,11 @@ public class VentanaParticiparSubasta extends JDialog implements ActionListener,
 	}
 
 	public String pasarelaSeleccionado() throws Exception {
-		JRadioButton s = seleccionado2(tipoPasarela);
+		JRadioButton s = seleccionado(tipoPasarela);
 		String respuesta =  s.getText();
 		return respuesta;
 	}
-	
-	public static JRadioButton seleccionado2(ButtonGroup group){
-        for (Enumeration e=group.getElements(); e.hasMoreElements(); )
-        {
-            JRadioButton b = (JRadioButton)e.nextElement();
-            if (b.getModel() == group.getSelection())
-            {
-                return b;
-            }
-        }
-        return null;}
+
 		
 	@Override
 	public void itemStateChanged(ItemEvent e) {

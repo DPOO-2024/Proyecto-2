@@ -33,6 +33,7 @@ import InterfazPanelesPiezas.PanelPintura;
 import InterfazPanelesPiezas.PanelVideo;
 
 public class VentanaNuevaPieza extends JDialog implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private JPanel ventana;
 	private JPanel afuera;
 	private JScrollPane panel;

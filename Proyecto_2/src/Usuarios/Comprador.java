@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import Consola.ConsolaInicial;
 import Exceptions.MensajedeErrorException;
 import Exceptions.PagoRechazado;
 import Modelo.Administrador;

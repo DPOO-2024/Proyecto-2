@@ -23,11 +23,10 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import Modelo.Galeria;
-import Piezas.Autor;
 import Usuarios.Comprador;
-import Usuarios.Usuario;
 
 public class VentanaClientes extends JDialog implements ActionListener{
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Comprador> compradores;
 	private JList<String> lista;
 	private Galeria mundo;
@@ -109,7 +108,6 @@ public class VentanaClientes extends JDialog implements ActionListener{
 	//Mostrar info de Pieza seleccionada
 	public void mostrarInfo() {
 		int i = lista.getSelectedIndex();
-		String val = (String) lista.getSelectedValue();
 		
 		JDialog info = new JDialog();
 		info.setTitle("Información Autor");

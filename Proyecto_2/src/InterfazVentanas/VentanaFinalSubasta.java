@@ -37,6 +37,7 @@ import Piezas.Pieza;
 import Usuarios.Operador;
 
 public class VentanaFinalSubasta extends JDialog implements ActionListener, ItemListener {
+	private static final long serialVersionUID = 1L;
 	private JTextField fecha;
 	private Galeria principal;
 	private Subasta subasta;
@@ -235,7 +236,7 @@ String comando = e.getActionCommand();
 		return respuesta;
 	}
 	
-	public static JRadioButton seleccionado2(ButtonGroup group){
+	public static JRadioButton seleccionado(ButtonGroup group){
         for (Enumeration e=group.getElements(); e.hasMoreElements(); )
         {
             JRadioButton b = (JRadioButton)e.nextElement();
@@ -322,18 +323,6 @@ public JPanel panelLista() throws MensajedeErrorException {
 	return respuesta;
 }
 
-	public static JRadioButton seleccionado(ButtonGroup group){
-    for (Enumeration e=group.getElements(); e.hasMoreElements(); )
-    {
-        JRadioButton b = (JRadioButton)e.nextElement();
-        if (b.getModel() == group.getSelection())
-        {
-            return b;
-        }
-    }
-    return null;
-}
-	
 	
 
 	private void rehacerOferta() {

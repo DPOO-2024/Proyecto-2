@@ -17,7 +17,7 @@ public class CentralPersistencia {
 	public static void guardarGaleria(Galeria gal) {
 		GuardarGaleria perGal= new GuardarGaleria(gal);
 	try {
-		String respuesta = perGal.generarArchivos();
+		perGal.generarArchivos();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}

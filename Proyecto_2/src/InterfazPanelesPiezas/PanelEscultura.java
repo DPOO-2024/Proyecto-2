@@ -16,6 +16,7 @@ import javax.swing.text.StyledDocument;
 
 import Exceptions.MensajedeErrorException;
 
+
 public class PanelEscultura extends JPanel{
 	private JPanel panel;
 	private JTextField alto;

@@ -15,10 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -29,6 +27,7 @@ import Modelo.Galeria;
 import Piezas.Pieza;
 
 public class VentanaPiezas extends JDialog implements ActionListener {
+	private static final long serialVersionUID = 1L;
 	//private interfazAdministrador interfaz;
 	private ArrayList<Pieza> piezas;
 	private JList<String> lista;
@@ -119,8 +118,7 @@ public class VentanaPiezas extends JDialog implements ActionListener {
 	//Mostrar info de Pieza seleccionada
 	public void mostrarInfo() {
 		int i = lista.getSelectedIndex();
-		String val = (String) lista.getSelectedValue();
-		
+
 		JDialog info = new JDialog();
 		info.setTitle("Información Pieza");
 		info.setSize(700, 500);
