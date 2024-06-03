@@ -17,6 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
+import InterfazVentanas.VentanaAutores;
+import InterfazVentanas.VentanaClientes;
+import InterfazVentanas.VentanaInfoUsuarios;
+import InterfazVentanas.VentanaPiezas;
+import InterfazVentanas.VentanasInfoSubasta;
 import Modelo.Galeria;
 import Piezas.Autor;
 import Piezas.Pieza;

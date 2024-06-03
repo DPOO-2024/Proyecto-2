@@ -1,4 +1,4 @@
-package Interfaz;
+package InterfazVentanas;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,33 +24,33 @@ import javax.swing.text.StyledDocument;
 
 import Modelo.Galeria;
 import Piezas.Autor;
-import Piezas.Pieza;
+import Usuarios.Comprador;
+import Usuarios.Usuario;
 
-public class VentanaAutores extends JDialog implements ActionListener {
-	//private interfazAdministrador interfaz;
-	private ArrayList<Autor> autores;
+public class VentanaClientes extends JDialog implements ActionListener{
+	private ArrayList<Comprador> compradores;
 	private JList<String> lista;
 	private Galeria mundo;
 	
 	//public VentanaPiezas(interfazAdministrador i, ArrayList<Pieza> p, String titulo) {
-	public VentanaAutores( ArrayList<Autor> a, Galeria m) {
+	public VentanaClientes( ArrayList<Comprador> c, Galeria m) {
 		//interfaz=i;
 		mundo=m;
-		autores=a;
+		compradores=c;
 		
-		setTitle("Historial Autores");
+		setTitle("Historial Clientes");
 		setSize(800, 600);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		
 		JPanel superior = new JPanel(new BorderLayout());
-		JLabel t= new JLabel("Historial Autores",JLabel.CENTER);
+		JLabel t= new JLabel("Historial Clientes",JLabel.CENTER);
 		t.setFont(new Font("Nirmala UI",Font.BOLD,30));
 		t.setForeground(new Color(0, 144, 41 ));
 		superior.add(t,BorderLayout.CENTER);
 		
-		JLabel extra= new JLabel("Seleccione el autor del cual quiera ver el historial.",JLabel.CENTER);
+		JLabel extra= new JLabel("Seleccione el cliente del cual quiera ver el historial.",JLabel.CENTER);
 		extra.setFont(new Font("Nirmala UI",Font.PLAIN,10));
 		extra.setForeground(new Color(0, 144, 41 ));
 		superior.add(extra,BorderLayout.SOUTH);
@@ -60,13 +60,13 @@ public class VentanaAutores extends JDialog implements ActionListener {
 		JPanel ordenar= new JPanel(new GridLayout(3,1,0,10));
 		JLabel relleno1= new JLabel(" ");
 		ordenar.add(relleno1);
-		JPanel panelP = panelAutores();
+		JPanel panelP = panelCompradores();
 		ordenar.add(panelP);
 		JLabel relleno2= new JLabel(" ");
 		ordenar.add(relleno2);
 		add(ordenar, BorderLayout.CENTER);
 		
-		JButton continuar = new JButton("Ver información Autor");
+		JButton continuar = new JButton("Ver información Cliente");
 		continuar.setForeground(Color.WHITE);
 		continuar.setPreferredSize(new Dimension(100,30));
 		continuar.setBackground(new Color(0, 90, 26));
@@ -78,18 +78,18 @@ public class VentanaAutores extends JDialog implements ActionListener {
 	}
 	
 	//Crear panel con Piezas
-	public JPanel panelAutores() {
+	public JPanel panelCompradores() {
 		
 		JPanel panel = new JPanel(new BorderLayout());
-		JLabel t = new JLabel("Nombre del autor",JLabel.CENTER);
+		JLabel t = new JLabel("Nombre del Comprador",JLabel.CENTER);
 		t.setFont(new Font("Nirmala UI",Font.BOLD,25));
 		t.setForeground(new Color(0, 144, 41 ));
 		panel.add(t,BorderLayout.NORTH);
-
+		
 		DefaultListModel<String> titulos = new DefaultListModel<String>();
 		int i=1;
-		for (Autor a:autores) {
-			String fila = Integer.toString(i)+ ". "+a.getNombre();
+		for (Comprador c : compradores) {
+			String fila = Integer.toString(i)+ ". "+c.getNombre();
 			titulos.addElement(fila);
 			i++;
 		}
@@ -118,12 +118,12 @@ public class VentanaAutores extends JDialog implements ActionListener {
 		info.setLocationRelativeTo(null);
 		info.setLayout(new BorderLayout());
 		
-		Autor a = autores.get(i);
-		String infoAutor=Autor.mostrarHistorialArtista(mundo, a);
+		Comprador c = compradores.get(i);
+		String infoC=Comprador.mostrarHistorialCliente(c, mundo);
 		
 	
 		JTextPane m1 = new JTextPane();
-		m1.setText(infoAutor);
+		m1.setText(infoC);
 		m1.setEditable(false);
 		m1.setFont(new Font("Nirmala UI",Font.PLAIN,20));
         m1.setForeground(new Color(0,59,20));

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Exceptions.MensajedeErrorException;
+import InterfazVentanas.ventanaInicioSesion;
 import Modelo.Empleado;
 import Modelo.Galeria;
 import Usuarios.Comprador;

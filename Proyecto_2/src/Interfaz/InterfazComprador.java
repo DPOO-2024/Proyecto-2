@@ -23,6 +23,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import Exceptions.MensajedeErrorException;
+import InterfazVentanas.VentanaAutores;
+import InterfazVentanas.VentanaComprar;
+import InterfazVentanas.VentanaFinalSubasta;
+import InterfazVentanas.VentanaParticiparSubasta;
+import InterfazVentanas.VentanaPiezas;
 import Modelo.Administrador;
 import Modelo.Galeria;
 import Modelo.Subasta;
