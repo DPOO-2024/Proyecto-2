@@ -8,7 +8,7 @@
 980,Tarjeta,8901234589012345,890,Visa,Lucia Ramirez,241008
 440,Transferencia,,000,Banco Santander,Diego Torres,241109
 75,Efectivo,,000,,Carmen Jimenez,241210
-3500,Tarjeta,2345678923456789,234,Mastercard,Victor Ruiz,241311
+3500,Tarjeta,2345678923456789,234,Mastercard,Victor Ruiz,241211
 125,Efectivo,,000,,Isabel Diaz,241412
 1200,Transferencia,,000,Banco BBVA,Alberto Ortiz,241513
 180,Efectivo,,000,,Elena Suarez,241614

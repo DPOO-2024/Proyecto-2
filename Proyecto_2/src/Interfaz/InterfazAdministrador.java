@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -60,7 +61,7 @@ public class InterfazAdministrador extends JPanel implements ActionListener{
 	
 	public JPanel panelBoton() {
 		JPanel b= new JPanel();
-		b.setLayout(new GridLayout(7, 2, 20, 20));
+		b.setLayout(new GridLayout(8, 2, 20, 20));
 		
 		JLabel relleno= new JLabel("");
 		b.add(relleno);
@@ -166,6 +167,15 @@ public class InterfazAdministrador extends JPanel implements ActionListener{
 		asignarA.setActionCommand("Admin");
 		asignarA.addActionListener(this);
 		b.add(asignarA);
+		
+		JButton mostrarV=new JButton("Mostrar Mes con Mayor Ventas");
+		mostrarV.setFont(new Font ("Book Antiqua", Font.BOLD, 18));
+		mostrarV.setForeground(Color.WHITE);
+		mostrarV.setPreferredSize(new Dimension(250,50));
+		mostrarV.setBackground(new Color(0, 144, 41));
+		mostrarV.setActionCommand("ventas");
+		mostrarV.addActionListener(this);
+		b.add(mostrarV);
 		
 		return b;
 	}
@@ -316,6 +326,39 @@ public class InterfazAdministrador extends JPanel implements ActionListener{
 		ventanaA.setVisible(true);	
 	}
 	
+
+
+	public void graficoVentas() {
+		TreeMap<String,Integer> pagos = mundo.getCajero().generarReportePagos();
+		new Grafico(pagos);	
+		
+		
+		JDialog graf = new JDialog();
+		graf.setTitle("Grafica Ventas");
+		graf.setSize(800, 500);
+		graf.setResizable(false);
+		graf.setLocationRelativeTo(null);
+		graf.setLayout(new BorderLayout());
+		
+		JPanel superior = new JPanel(new BorderLayout());
+		JLabel t= new JLabel("Historial de Ventas",JLabel.CENTER);
+		t.setFont(new Font("Nirmala UI",Font.BOLD,30));
+		t.setForeground(new Color(0, 144, 41 ));
+		superior.add(t,BorderLayout.CENTER);
+		
+		JLabel extra= new JLabel("En el grafico se observan los mejores meses de ventas para la galeria.",JLabel.CENTER);
+		extra.setFont(new Font("Nirmala UI",Font.PLAIN,10));
+		extra.setForeground(new Color(0, 144, 41 ));
+		superior.add(extra,BorderLayout.SOUTH);
+		graf.add(superior,BorderLayout.NORTH);
+		
+		JPanel dibujo = new Grafico(pagos);
+		graf.add(dibujo);
+		
+		graf.setVisible(true);
+		
+	}
+	
 	
 	
 
@@ -432,9 +475,14 @@ public class InterfazAdministrador extends JPanel implements ActionListener{
 			}catch (Exception e1) {
 				JOptionPane.showMessageDialog(null, "No se pudo cambiar el administrador","Error",JOptionPane.ERROR_MESSAGE);
 				ventanaA.dispose();
-			}	
+			}
+		}else if (comando.equals("ventas")) {
+			graficoVentas();
+
 		}
 	}
+
+
 
 
 
