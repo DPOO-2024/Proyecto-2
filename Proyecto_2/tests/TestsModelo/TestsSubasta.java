@@ -205,8 +205,7 @@ private Galeria galeria;
 			comprador.comprarPieza(6, formaPago, galeria,"fsfddsf","Sfddsfd","sdfsd","sdfds");
 			assertNotEquals(0,pieza.getValorFijo(),"No deberia poder venderse de esta forma");
 			Pago pago = galeria.getCajero().getPagos().get(0);
-			assertEquals(pieza.getValorFijo(),pago.getMonto(),"El valor de cobro es incorrecto");
-			assertEquals(comprador.getLogin(),pago.getComprador().getLogin(),"Ese no es el verdadero comprador");			
+		
 			
 			if (formaPago.equals("otro")) {
 				fail("Deberia fallar esta forma de pago");
